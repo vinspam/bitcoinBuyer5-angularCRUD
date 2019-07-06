@@ -13,7 +13,8 @@ import { DisplayPersonComponent } from './persons/display-person.component';
 import { CreatePersonCanDeactivateGuardService } from './persons/create-person-can-deactivate-guard.service';
 import { PersonDetailsComponent } from './persons/person-details.component';
 import { PersonFilterPipe } from './persons/person-filter.pipe';
-import { AnimationsComponent } from './animations/animations.component'; 
+import { AnimationsComponent } from './animations/animations.component';
+import { ArraymakerComponent } from './arraymaker/arraymaker.component'; 
 
 const tmRoutes: Routes = [
   { path: 'list', component: ListPersonsComponent},
@@ -22,11 +23,15 @@ const tmRoutes: Routes = [
   component: CreatePersonComponent,
   canDeactivate: [CreatePersonCanDeactivateGuardService]},
 
+  { path: 'persons/:id', 
+  component: PersonDetailsComponent},
+
   { path: 'animations', 
   component: AnimationsComponent},
   
-  { path: 'persons/:id', 
-  component: PersonDetailsComponent},
+  { path: 'data', 
+  component: ArraymakerComponent},
+  
 
   { path: '', redirectTo: '/list', pathMatch: 'full' }
 ]
@@ -38,7 +43,8 @@ const tmRoutes: Routes = [
     DisplayPersonComponent,
     PersonDetailsComponent,
     PersonFilterPipe,
-    AnimationsComponent, 
+    AnimationsComponent,
+    ArraymakerComponent, 
   ],
   imports: [ 
     BrowserModule, 
