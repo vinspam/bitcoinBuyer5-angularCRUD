@@ -1,0 +1,78 @@
+<div class="panel panel-primary" (click)="handleClick()"> 
+    <div class="panel-heading">
+        <h3 class="panel-title">{{person.name}}</h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-xs-10">
+          <div class="vertical-align row">
+            <div class="col-xs-4">
+              <img class="imageClass" [src]="person.photoPath"/>
+            </div> 
+            <div class="col-xs-8">
+              <div class="row">
+                  <div class="col-xs-6">
+                    Email :
+                  </div>
+                  <div class="col-xs-6">
+                    {{person.email}}  
+                  </div>
+                </div>  
+                <div class="row">
+                    <div class="col-xs-6">
+                      Phone :
+                    </div>
+                    <div class="col-xs-6">
+                        {{person.phone}}  
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-xs-6">
+                        Contact Type :
+                      </div>
+                      <div class="col-xs-6">
+                          {{person.contactType}}  
+                      </div>
+                    </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                      Date of Birth :
+                    </div>
+                    <div class="col-xs-6">
+                        {{person.dateOfBirth | date}}  
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-xs-6">
+                        Acquaintance :
+                      </div>
+                      <div class="col-xs-6" [ngSwitch]="person.acquaintance">
+                        <!--   {{person.acquaintance}}   -->
+                        <span *ngSwitchCase="1">Pre College</span>
+                        <span *ngSwitchCase="2">College</span>
+                        <span *ngSwitchCase="3">Ed Work</span>
+                        <span *ngSwitchCase="4">Tech Work</span>
+                        <span *ngSwitchCase="5">Clubs &amp; Groups</span>
+                        <span *ngSwitchCase="6">Miscellaneous</span> 
+                        <span *ngSwitchDefault>N/A</span> 
+                      </div>
+                    </div>
+                  <div class="row">
+                      <div class="col-xs-6">
+                        Active :
+                      </div>
+                      <div class="col-xs-6">
+                        {{person.isActive}}  
+                      </div>
+                    </div>
+            </div> 
+          </div>
+        </div>
+      </div>
+  </div>
+  
+  <div class="panel footer">
+      <a class="btn btn-primary" [routerLink]="['/list']">Back to Contacts List</a>
+      <button class="btn btn-primary pull-right" (click)="viewNextPerson()">
+        View Next Contact
+      </button>
+    </div>

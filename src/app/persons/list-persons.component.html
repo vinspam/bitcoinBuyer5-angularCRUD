@@ -1,0 +1,27 @@
+<div class="form-group" style="height:40px;">
+    <input type="text" class="form-control" placeholder="Name Search! " style="float:left;width: 300px" [(ngModel)]="searchTerm" />
+    <span *ngIf="searchTerm" style="color:blue;background-color:aliceblue;">Name Searched ... {{searchTerm}} &nbsp;&nbsp;&nbsp;</span>
+ 
+    <input type="text" class="form-control" placeholder="Email Search .."  style="float:left;width: 300px" [value]="" (input)="emailSearch=$event.target.value" /> 
+    <span *ngIf="emailSearch" style="color:blue;background-color:aliceblue;">Email Searched ... {{emailSearch}} &nbsp;&nbsp;&nbsp;</span>
+</div >
+<h4 #h4Variable></h4>
+    <div  *ngFor="let person of filteredPersons"> <!-- | personFilter:searchTerm     ::Dont use filter property ... after 2x,3x...remove filter pipe!-->
+        <!-- Call child component methods/properties using Template Reference Variable --> 
+   <!-- Call child component methods/properties using Template Reference Variable -->
+   <div (click) = "onClick(person.id)" class="pointerCursor">
+        <div (click)="h4Variable.innerHTML = childComponent.getPersonNameAndEmail()">
+                <tm-display-person [person]="person" #childComponent (notify)="handleNotify($event)"></tm-display-person>
+         </div>
+   </div>
+</div> 
+
+<h3 *ngIf="dataFromChild"> {{ dataFromChild?.name }}, phone : {{ dataFromChild?.phone }}</h3> 
+
+ <!-- cards scroll-through design below  (other parts in display-person.comp)-->
+
+<!-- <button (click)="nextPerson()" class="btn btn-primary">
+    View Next Employee
+</button>
+<br /><br /> 
+<tm-display-person [person]="personToDisplay" [personId]="personToDisplay.id"></tm-display-person> -->
