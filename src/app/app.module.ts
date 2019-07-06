@@ -14,7 +14,8 @@ import { CreatePersonCanDeactivateGuardService } from './persons/create-person-c
 import { PersonDetailsComponent } from './persons/person-details.component';
 import { PersonFilterPipe } from './persons/person-filter.pipe';
 import { AnimationsComponent } from './animations/animations.component';
-import { ArraymakerComponent } from './arraymaker/arraymaker.component'; 
+import { ArraymakerComponent } from './arraymaker/arraymaker.component';
+import { TestingBtnComponent } from './testing-btn/testing-btn.component'; 
 
 const tmRoutes: Routes = [
   { path: 'list', component: ListPersonsComponent},
@@ -44,7 +45,8 @@ const tmRoutes: Routes = [
     PersonDetailsComponent,
     PersonFilterPipe,
     AnimationsComponent,
-    ArraymakerComponent, 
+    ArraymakerComponent,
+    TestingBtnComponent, 
   ],
   imports: [ 
     BrowserModule, 

@@ -23,7 +23,6 @@
         "styles.css"
       ],
       "scripts": [
-        "lodash"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
