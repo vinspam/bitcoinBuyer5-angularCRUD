@@ -4,9 +4,9 @@ import { SidebarService } from './sidebar.service';
 @Component({
   selector: 'tm-sidebar-toggle',
   template: `
-    <p>
-    Console calculations
-    </p>
+    <h4>
+   CONSOLE <br />CALCULATIONS
+    </h4>
   `,
   styleUrls: [
     './sidebar-toggle.component.css'

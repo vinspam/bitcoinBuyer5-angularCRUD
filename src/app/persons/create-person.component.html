@@ -79,7 +79,7 @@
           </div>
     </div>
 </form>
-<div style="background-color:aliceblue;color:green;">
-<p >personForm.value: {{personForm.value | json}}</p>
+<div *ngIf="person.name !== null" style="background-color:aliceblue;color:green;">
+<p >personForm: {{personForm.value | json}}</p>
 <p >person: {{person.value | json}}</p>
 </div>

@@ -9,3 +9,7 @@
   :host:hover {
     background: #ddd;
   }
+ h1,h2,h3,h4 {
+     text-align:center;
+     line-height:2rem;
+ }
