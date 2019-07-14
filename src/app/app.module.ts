@@ -20,7 +20,9 @@ import { TestingBtnComponent } from './testing-btn/testing-btn.component';
 
 import { SidebarComponent } from './layout/sidebar.component';
 import { SidebarService } from './layout/sidebar.service';
-import { SidebarToggleComponent } from './layout/sidebar-toggle.component'; 
+import { SidebarToggleComponent } from './layout/sidebar-toggle.component';
+import { DetailbarToggleComponent } from './layout/detailbar-toggle.component';
+import { DetailbarComponent } from './layout/detailbar.component'; 
 
 const tmRoutes: Routes = [
   { path: 'list', component: ListPersonsComponent},
@@ -53,7 +55,9 @@ const tmRoutes: Routes = [
     ArraymakerComponent,
     TestingBtnComponent,
     SidebarComponent,
-    SidebarToggleComponent, 
+    SidebarToggleComponent,
+    DetailbarToggleComponent,
+    DetailbarComponent, 
   ],
   imports: [ 
     BrowserModule, 

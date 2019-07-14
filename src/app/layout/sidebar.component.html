@@ -1,7 +1,10 @@
 <div class="sidebar panel panel-body">
-  <p>
-    Console calculations: data from 07-04-2019<br />
-    BTC, ETH datasource -
-    https://www.cryptodatadownload.com/data/northamerican/
-  </p>
+  <div>
+      <p>
+          Console calculations: data from 07-04-2019<br />
+        </p>
+        <tm-detailbar-toggle [detailbar]="detailbar"></tm-detailbar-toggle>  
+        
+  </div>
+  <tm-detailbar #detailbar></tm-detailbar>
 </div>

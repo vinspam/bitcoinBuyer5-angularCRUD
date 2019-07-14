@@ -1,19 +1,20 @@
 :host {
     /* box-sizing: border-box; */
     display: none;
-    /* position: fixed;
+    position: relative;
     right: 0;
-    top: 0; */
+    top: 0;
     float:right;
-    width: 500px;
+    width: 600px;
+    max-width:80%;
     height: 100%;
     padding: 20px 20px;
-    background: #ccc;
+    background: #ccc; 
   }
   
   :host.is-open {
     display: block;
   }
   .sidebar {
-      min-height:250px;
+      min-height:650px;
   }

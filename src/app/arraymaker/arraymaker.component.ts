@@ -16,7 +16,6 @@ export class ArraymakerComponent implements OnInit {
 
 
   
-  
   ngOnInit() {
 
     
@@ -148,7 +147,7 @@ export class ArraymakerComponent implements OnInit {
       "Volume USD": 53230192.12
     }
   ]; 
-
+ 
 // for (let i = 0; i < btc2019.length; i++) {
 //   console.log(btc2019[i]);
 // }

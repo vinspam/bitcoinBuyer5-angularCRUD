@@ -5,7 +5,7 @@ import { SidebarService } from './sidebar.service';
   selector: 'tm-sidebar-toggle',
   template: `
     <h4>
-   CONSOLE <br />CALCULATIONS
+   CONSOLE ONE
     </h4>
   `,
   styleUrls: [
