@@ -9,13 +9,18 @@ import { AppComponent } from './app.component';
 import { ListPersonsComponent } from './persons/list-persons.component';
 import { CreatePersonComponent } from './persons/create-person.component';
 import { PersonService } from './persons/person.service';
+
 import { DisplayPersonComponent } from './persons/display-person.component';
 import { CreatePersonCanDeactivateGuardService } from './persons/create-person-can-deactivate-guard.service';
 import { PersonDetailsComponent } from './persons/person-details.component';
 import { PersonFilterPipe } from './persons/person-filter.pipe';
 import { AnimationsComponent } from './animations/animations.component';
 import { ArraymakerComponent } from './arraymaker/arraymaker.component';
-import { TestingBtnComponent } from './testing-btn/testing-btn.component'; 
+import { TestingBtnComponent } from './testing-btn/testing-btn.component';
+
+import { SidebarComponent } from './layout/sidebar.component';
+import { SidebarService } from './layout/sidebar.service';
+import { SidebarToggleComponent } from './layout/sidebar-toggle.component'; 
 
 const tmRoutes: Routes = [
   { path: 'list', component: ListPersonsComponent},
@@ -46,7 +51,9 @@ const tmRoutes: Routes = [
     PersonFilterPipe,
     AnimationsComponent,
     ArraymakerComponent,
-    TestingBtnComponent, 
+    TestingBtnComponent,
+    SidebarComponent,
+    SidebarToggleComponent, 
   ],
   imports: [ 
     BrowserModule, 
@@ -55,7 +62,7 @@ const tmRoutes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(tmRoutes)
   ],
-  providers: [PersonService, CreatePersonCanDeactivateGuardService],
+  providers: [PersonService, SidebarService, CreatePersonCanDeactivateGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

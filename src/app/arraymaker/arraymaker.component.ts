@@ -12,6 +12,14 @@ export class ArraymakerComponent implements OnInit {
 
   constructor() { 
 
+  }
+
+
+  
+  
+  ngOnInit() {
+
+    
     const array = [4,5,6];
     console.log('arraymaker : ', _.shuffle(array)); 
     
@@ -222,14 +230,6 @@ const avgPosLong = btc2019
 const avgPos = avgPosLong / btc2019.length;
 console.log(avgPosLong, avgPos);
 
-  }
-
-
-  
-  
-  ngOnInit() {
-
-    
   }
 
 }
