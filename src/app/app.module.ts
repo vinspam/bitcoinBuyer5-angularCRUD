@@ -42,7 +42,7 @@ const tmRoutes: Routes = [
   component: ArraymakerComponent},
   
 
-  { path: '', redirectTo: '/', pathMatch: 'full' }
+  { path: '**', redirectTo: '/', pathMatch: 'full' }
 ]
 @NgModule({
   declarations: [
