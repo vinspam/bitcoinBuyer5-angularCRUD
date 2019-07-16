@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';  
+import { FormsModule } from '@angular/forms';
+import { SelectRequiredValidatorDirective } from './shared/select-required-validator.directive';  
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 
@@ -25,7 +26,7 @@ import { DetailbarToggleComponent } from './layout/detailbar-toggle.component';
 import { DetailbarComponent } from './layout/detailbar.component'; 
 
 const tmRoutes: Routes = [
-  { path: 'list', component: ListPersonsComponent},
+  { path: '', component: ListPersonsComponent},
 
   { path: 'create', 
   component: CreatePersonComponent,
@@ -41,7 +42,7 @@ const tmRoutes: Routes = [
   component: ArraymakerComponent},
   
 
-  { path: '', redirectTo: '/list', pathMatch: 'full' }
+  { path: '', redirectTo: '/', pathMatch: 'full' }
 ]
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ const tmRoutes: Routes = [
     DisplayPersonComponent,
     PersonDetailsComponent,
     PersonFilterPipe,
+    SelectRequiredValidatorDirective,
     AnimationsComponent,
     ArraymakerComponent,
     TestingBtnComponent,
