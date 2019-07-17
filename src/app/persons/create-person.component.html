@@ -19,17 +19,19 @@
           <div class="form-group"  [class.has-error]="email.invalid && email.touched"
                                    [class.has-success]="email.valid">
               <label for="email" class="control-label">Email<span class="required"> *</span></label>
+              <!-- [email]="person.email !== ''" -->
               <input id="email"  name="email" 
                       required 
-                      [email]="person.email !== ''"
+                      pattern ="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
                       [(ngModel)]="person.email" 
                       type="text" class="form-control"
                       #email="ngModel">
               <span class="help-block"
                     *ngIf="email.errors?.required && email.touched"> Email is required
               </span>
+              <!-- *ngIf="email.errors?.email && email.touched"> -->
               <span class="help-block"
-                    *ngIf="email.errors?.email && email.touched"> Email is invalid
+                    *ngIf="email.errors?.pattern && email.touched"> Email is invalid
               </span>
             </div>
 
@@ -80,7 +82,7 @@
                   [(ngModel)]="person.acquaintance"
                   class="form-control"
                   #acquaintance="ngModel">
-                    <option value="select">Select Type of Acquaintance</option>
+                    <option disabled  value="select"><em>Select Type of Acquaintance: </em></option>
                     <option *ngFor="let acq of acquaintances" [value]="acq.id">
                       {{acq.name}}
                     </option> 
