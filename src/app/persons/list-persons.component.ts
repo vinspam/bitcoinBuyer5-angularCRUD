@@ -9,22 +9,38 @@ import { Router } from '@angular/router';
   styleUrls: ['./list-persons.component.css']
 })
 export class ListPersonsComponent implements OnInit {
-  emailSearch: string;
+  inputEmailDisplaySearch: string;
   persons: Person[];
   filteredPersons: Person[]; //muyimprtante - no need to query webserver for each filter; returns full list without roundtrip
 
+
   private _searchTerm: string;
+  private _emailSearch: string;
+
   get searchTerm(): string {
     return this._searchTerm;
   }  
+  get emailSearch(): string {
+    return this._emailSearch;
+  }
 
   set searchTerm(value: string) {
     this._searchTerm = value;
-    this.filteredPersons = this.filterePersons(value);
+    this.filteredPersons = this.nameFilterPersons(value);
   }
-  filterePersons(searchString: string) {
+
+  set emailSearch(value: string) {
+    this._emailSearch = value;
+    this.filteredPersons = this.emailfilterPersons(value);
+  }
+
+  nameFilterPersons(searchString: string) {
     return this.persons.filter(person => person.name.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
+  emailfilterPersons(searchString: string) {
+    return this.persons.filter(person => person.email.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+  }
+
   //searchTerm: string;
 
   dataFromChild: Person;
@@ -35,10 +51,16 @@ export class ListPersonsComponent implements OnInit {
               private _router: Router) { }
 
   ngOnInit() {
-    this.emailSearch = "";
+    this.inputEmailDisplaySearch = "";
     this.persons = this._personService.getPersons();
-    this.filteredPersons = this.persons;
+    this.filteredPersons = this.persons; 
     //this.personToDisplay = this.persons[0];
+  }
+  clearInput():void {
+    this.emailSearch = '';
+    this.searchTerm = '';
+    this.inputEmailDisplaySearch = '';
+    // this.filteredPersons = [] ;
   }
   handleNotify(eventData: Person) {
     this.dataFromChild = eventData;

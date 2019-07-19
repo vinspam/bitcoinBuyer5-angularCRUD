@@ -1,16 +1,19 @@
 <div class="form-group search"  >
-   <div class="input">
-        <input type="text" class="form-control" placeholder="Name Search! "  [(ngModel)]="searchTerm" />
+   <div class="input" *ngIf="!inputEmailDisplaySearch">
+        <input type="text" class="form-control" placeholder="Name Search... "  [(ngModel)]="searchTerm" />
     <span *ngIf="searchTerm"  ><em>Name you searched: </em> &nbsp;&nbsp;{{searchTerm}}  </span>
    </div>
-   <div class="input">
-        <input type="text" class="form-control" placeholder="Email Search .."   [value]="" (input)="emailSearch=$event.target.value" /> 
-    <span *ngIf="emailSearch" >Email you searched: &nbsp;&nbsp;{{emailSearch}}  </span>
+   <div class="input" *ngIf="!searchTerm">  
+        <input type="text" class="form-control" placeholder="Email Search..." [(ngModel)]="emailSearch" 
+        [value]="" (input)="inputEmailDisplaySearch=$event.target.value"    /> 
+    <span *ngIf="inputEmailDisplaySearch" >Email you searched: &nbsp;&nbsp;{{inputEmailDisplaySearch}} </span>
    </div>
+   <button class="btn btn-primary clear-input" (click)="clearInput()">Clear</button>
 </div >
 <h4 #h4Variable></h4> 
 <h4 *ngIf="filteredPersons.length===0" class="none">Oops! Search yielded no results. </h4> 
-    <div  *ngFor="let person of filteredPersons">
+    
+<div  *ngFor="let person of filteredPersons">
            <!-- | personFilter:searchTerm     ::Dont use filter property ... after 2x,3x...remove filter pipe!-->
         <!-- Call child component methods/properties using Template Reference Variable --> 
    <!-- Call child component methods/properties using Template Reference Variable -->

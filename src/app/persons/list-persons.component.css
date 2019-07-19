@@ -4,6 +4,10 @@
 .search {
     height:70px;
 } 
+.clear-input {
+    margin:5px;
+    float:right;
+}
 .input input {
     min-width: 250px;
     width:49%;
