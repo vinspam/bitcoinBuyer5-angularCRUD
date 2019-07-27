@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanDeactivate } from '@angular/router';
-import { CreatePersonComponent } from './create-person.component';
+import { CreatePersonComponent } from '../persons/create-person.component';
 
 @Injectable()
 export class CreatePersonCanDeactivateGuardService implements CanDeactivate<CreatePersonComponent> {

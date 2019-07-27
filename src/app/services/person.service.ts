@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Person } from '../models/person.model';
-import { e } from '@angular/core/src/render3';
-//import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+// import 'rxjs/add/observable/delay';
+
+
 //import { HttpClient } from '@angular/common/http'; 
 
 @Injectable()
@@ -47,8 +50,10 @@ export class PersonService {
     // getPersons(): Observable<Person[]> {
     //   return this.httpClient.get<Person[]>('http://localhost:3000/persons')
     // }
-  getPersons(): Person[] {
-    return this.listPersons;
+  //getPersons(): Person[] {
+  // return this.listPersons;
+  getPersons(): Observable<Person[]> {
+    return Observable.of(this.listPersons);
   }
   getPerson(id: number): Person {
     return this.listPersons.find(e => e.id === id)

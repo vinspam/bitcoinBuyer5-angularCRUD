@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Acquaintance } from '../models/acquaintance.model'; 
 import { Person } from '../models/person.model';
-import { PersonService } from './person.service';
+import { PersonService } from '../services/person.service';
 import { Router } from '@angular/router';
 
 @Component({

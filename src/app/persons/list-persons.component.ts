@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Person } from '../models/person.model';
-import { PersonService } from './person.service';
+//import { PersonService } from '../services/person.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,7 +12,6 @@ export class ListPersonsComponent implements OnInit {
   inputEmailDisplaySearch: string;
   persons: Person[];
   filteredPersons: Person[]; //muyimprtante - no need to query webserver for each filter; returns full list without roundtrip
-
 
   private _searchTerm: string;
   private _emailSearch: string;
@@ -49,24 +48,16 @@ export class ListPersonsComponent implements OnInit {
   }
   photoFilterPersons(searchString: string) {
     return this.persons.filter(person => person.photoPath.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
-  }
-
-  //searchTerm: string;
+  } 
 
   dataFromChild: Person;
   // personToDisplay: Person;
   // private arrayIndex = 1;
 
-  constructor(private _personService: PersonService,
+  constructor(    //private _personService: PersonService,
     private _router: Router,
-    private _route: ActivatedRoute) { }
-
-  ngOnInit() {
-    //this.personToDisplay = this.persons[0];
-    this.inputEmailDisplaySearch = "";
-    this.persons = this._personService.getPersons();
-    //this.filteredPersons = this.persons; 
-
+    private _route: ActivatedRoute) {
+    this.persons = this._route.snapshot.data['personList'];
     // OBSERVABLE way: 
     // this._route.queryParamMap.subscribe((queryParams) => {
     //   if (queryParams.has('searchTerm')) {
@@ -88,10 +79,19 @@ export class ListPersonsComponent implements OnInit {
     } else {
       this.filteredPersons = this.persons;
     }
+  }
 
-    console.log(this._route.snapshot.queryParamMap.has('searchTerm' || 'emailSearch' || 'findPhoto')); // returns true if param
-    console.log(this._route.snapshot.queryParamMap.get('searchTerm')); // returns value, (if not: null)
-    console.log(this._route.snapshot.queryParamMap.getAll('searchTerm')); //Returns string array of each of all values; empty array otherwise
+  ngOnInit() {
+    //this.personToDisplay = this.persons[0];
+    this.inputEmailDisplaySearch = "";
+    //this.persons = this._personService.getPersons();
+    //this._personService.getPersons().subscribe(persList => this.persons = persList); 
+
+    //this.filteredPersons = this.persons;  
+ 
+    console.log(this._route.snapshot.queryParamMap.has('searchTerm' || 'emailSearch' || 'findPhoto')); //true if param
+    // console.log(this._route.snapshot.queryParamMap.get('searchTerm')); // returns value, (if not: null)
+    // console.log(this._route.snapshot.queryParamMap.getAll('searchTerm')); //string array of all values
     console.log(this._route.snapshot.queryParamMap.keys); //returns string of ALL parameters
     console.log(this._route.snapshot.paramMap.keys); // required/optional paramater properties
   }
@@ -99,7 +99,7 @@ export class ListPersonsComponent implements OnInit {
     this.emailSearch = '';
     this.searchTerm = '';
     this.findPhoto = '';
-                            // !! TODO: when returning on 2nd + search...How to erase query parameters to refresh filter-search
+    // !! TODO: when returning on 2nd + search...How to erase query parameters to refresh filter-search
     this.inputEmailDisplaySearch = '';
     // this.filteredPersons = [] ;
   }
@@ -108,22 +108,8 @@ export class ListPersonsComponent implements OnInit {
   }
   onClick(personId: number) {
     this._router.navigate(['/persons', personId], {
-      queryParams: { 'searchTerm': this.searchTerm, 'emailSearch': this.emailSearch, 'findPhoto': this.findPhoto }
+      queryParams: { 'searchTerm': this.searchTerm, 'emailSearch': this.emailSearch, 'findPhoto': this.findPhoto } 
+  // when want parameters on route to be optional and retain across multip.e routes, NOT part of rte pattern matchaing 
     })
   }
-
-  // Query paramets when want parameters on route to be optional and to retain across multip.e routes, NOT part of route pattern matchaing
-
-
-
-  // //cards scroll-through design below-  (other parts in display-person.comp)
-  // nextPerson(): void {
-  //   if(this.arrayIndex <= 2) {
-  //     this.personToDisplay = this.persons[this.arrayIndex];
-  //     this.arrayIndex++; 
-  //   } else {
-  //     this.personToDisplay = this.persons[0];
-  //     this.arrayIndex = 1;
-  //   }
-  // }
 }
