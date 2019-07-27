@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'; // , OnChanges, SimpleChanges
+import { Component, OnInit, Input  } from '@angular/core'; // , OnChanges, SimpleChanges
 import { Person } from '../models/person.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'tm-display-person',
@@ -8,8 +9,8 @@ import { Person } from '../models/person.model';
 })
 
 export class DisplayPersonComponent implements OnInit {   //, OnChanges 
+   private selectedPersonId: number;
   @Input() person: Person;
-  @Output() notify: EventEmitter<Person> = new EventEmitter<Person>();
 
    // //cards scroll-through design below- (other parts in list-person.comp)
 
@@ -36,14 +37,12 @@ export class DisplayPersonComponent implements OnInit {   //, OnChanges
   //   }
   // }
 
-  constructor() { }
+  constructor(private _route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.selectedPersonId = +this._route.snapshot.paramMap.get('id');
   }
   getPersonNameAndEmail(): string {
     return this.person.name + ', Email:  ' + this.person.email ;
-  }
-  handleClick() {
-    this.notify.emit(this.person);
   }
 }

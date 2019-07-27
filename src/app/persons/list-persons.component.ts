@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Person } from '../models/person.model';
 import { PersonService } from './person.service';
-import { Router } from '@angular/router'; 
+import { Router, } from '@angular/router'; 
 
 @Component({
   // selector: 'tm-list-persons',
@@ -16,6 +16,7 @@ export class ListPersonsComponent implements OnInit {
 
   private _searchTerm: string;
   private _emailSearch: string;
+  private _findPhoto: string;
 
   get searchTerm(): string {
     return this._searchTerm;
@@ -23,15 +24,21 @@ export class ListPersonsComponent implements OnInit {
   get emailSearch(): string {
     return this._emailSearch;
   }
+  get findPhoto(): string {
+    return this._findPhoto;
+  }  
 
   set searchTerm(value: string) {
     this._searchTerm = value;
     this.filteredPersons = this.nameFilterPersons(value);
   }
-
   set emailSearch(value: string) {
     this._emailSearch = value;
     this.filteredPersons = this.emailfilterPersons(value);
+  }
+  set findPhoto(value: string) {
+    this._findPhoto = value;
+    this.filteredPersons = this.photoFilterPersons(value);
   }
 
   nameFilterPersons(searchString: string) {
@@ -39,6 +46,9 @@ export class ListPersonsComponent implements OnInit {
   }
   emailfilterPersons(searchString: string) {
     return this.persons.filter(person => person.email.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+  }
+  photoFilterPersons(searchString: string) {
+    return this.persons.filter(person => person.photoPath.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
   //searchTerm: string;
@@ -59,6 +69,8 @@ export class ListPersonsComponent implements OnInit {
   clearInput():void {
     this.emailSearch = '';
     this.searchTerm = '';
+    this.findPhoto = '';
+
     this.inputEmailDisplaySearch = '';
     // this.filteredPersons = [] ;
   }
@@ -66,8 +78,14 @@ export class ListPersonsComponent implements OnInit {
     this.dataFromChild = eventData;
   }
   onClick(personId: number) {
-    this._router.navigate(['/persons', personId])
+    this._router.navigate(['/persons', personId], {  queryParams: { 'searchTerm':this.searchTerm, 'emailSearch':this.emailSearch, 'findPhoto':this.findPhoto }
+    })
   }
+
+// Query paramets when want parameters on route to be optional and to retain across multip.e routes, NOT part of route pattern matchaing
+
+
+
   // //cards scroll-through design below-  (other parts in display-person.comp)
   // nextPerson(): void {
   //   if(this.arrayIndex <= 2) {

@@ -1,32 +1,39 @@
-<div class="form-group search"  >
-   <div class="input" *ngIf="!inputEmailDisplaySearch">
-        <input type="text" class="form-control" placeholder="Name Search... "  [(ngModel)]="searchTerm" />
-    <span *ngIf="searchTerm"  ><em>Name you searched: </em> &nbsp;&nbsp;{{searchTerm}}  </span>
-   </div>
-   <div class="input" *ngIf="!searchTerm">  
-        <input type="text" class="form-control" placeholder="Email Search..." [(ngModel)]="emailSearch" 
-        [value]="" (input)="inputEmailDisplaySearch=$event.target.value"    /> 
-    <span *ngIf="inputEmailDisplaySearch" >Email you searched: &nbsp;&nbsp;{{inputEmailDisplaySearch}} </span>
-   </div>
-   <button class="btn btn-primary clear-input" (click)="clearInput()">Clear</button>
-</div >
-<h4 #h4Variable></h4> 
-<h4 *ngIf="filteredPersons.length===0" class="none">Oops! Search yielded no results. </h4> 
-    
-<div  *ngFor="let person of filteredPersons">
-           <!-- | personFilter:searchTerm     ::Dont use filter property ... after 2x,3x...remove filter pipe!-->
-        <!-- Call child component methods/properties using Template Reference Variable --> 
-   <!-- Call child component methods/properties using Template Reference Variable -->
-   <div (click) = "onClick(person.id)" class="pointerCursor">
+<div class="form-group search">
+
+    <div class="input" *ngIf="!inputEmailDisplaySearch && !findPhoto ">
+        <input type="text" class="form-control" placeholder="Name Search... " [(ngModel)]="searchTerm" />
+        <span *ngIf="searchTerm"><em>Name you searched: </em> &nbsp;&nbsp;{{searchTerm}} </span>
+    </div>
+
+    <div class="input" *ngIf="!searchTerm && !findPhoto">
+        <input type="text" class="form-control" placeholder="Email Search..." [(ngModel)]="emailSearch" [value]=""
+            (input)="inputEmailDisplaySearch=$event.target.value" />
+        <span *ngIf="inputEmailDisplaySearch">Email you searched: &nbsp;&nbsp;{{inputEmailDisplaySearch}} </span>
+    </div>
+
+    <div class="input" *ngIf="!inputEmailDisplaySearch && !searchTerm">
+        <input type="text" class="form-control" placeholder="Photo Search... " [(ngModel)]="findPhoto" />
+        <span *ngIf="findPhoto"><em>Photo you searched: </em> &nbsp;&nbsp;{{findPhoto}} </span>
+    </div>
+
+    <button class="btn btn-primary clear-input" (click)="clearInput()">Clear</button>
+</div>
+<h4 #h4Variable></h4>
+<h4 *ngIf="filteredPersons.length===0" class="none">Oops! Search yielded no results. </h4>
+
+<div *ngFor="let person of filteredPersons">
+    <!-- | personFilter:searchTerm     ::Dont use filter property ... after 2x,3x...remove filter pipe!-->
+    <!-- Call child component methods/properties using Template Reference Variable --> 
+    <div (click)="onClick(person.id)" class="pointerCursor">
         <div (click)="h4Variable.innerHTML = childComponent.getPersonNameAndEmail()">
-                <tm-display-person [person]="person" #childComponent (notify)="handleNotify($event)"></tm-display-person>
-         </div>
-   </div>
-</div> 
+            <tm-display-person [person]="person" #childComponent (notify)="handleNotify($event)"></tm-display-person>
+        </div>
+    </div>
+</div>
 
-<h3 *ngIf="dataFromChild"> {{ dataFromChild?.name }}, phone : {{ dataFromChild?.phone }}</h3> 
+<h3 *ngIf="dataFromChild"> {{ dataFromChild?.name }}, phone : {{ dataFromChild?.phone }}</h3>
 
- <!-- cards scroll-through design below  (other parts in display-person.comp)-->
+<!-- cards scroll-through design below  (other parts in display-person.comp)-->
 
 <!-- <button (click)="nextPerson()" class="btn btn-primary">
     View Next Employee

@@ -28,6 +28,8 @@ import { DetailbarComponent } from './layout/detailbar.component';
 const tmRoutes: Routes = [
   { path: '', component: ListPersonsComponent},
 
+  { path: 'list', component: ListPersonsComponent},
+
   { path: 'create', 
   component: CreatePersonComponent,
   canDeactivate: [CreatePersonCanDeactivateGuardService]},
