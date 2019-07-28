@@ -1,6 +1,6 @@
 import { Component, OnInit, Input  } from '@angular/core'; // , OnChanges, SimpleChanges
 import { Person } from '../models/person.model';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'tm-display-person',
@@ -11,6 +11,9 @@ import { ActivatedRoute } from '@angular/router';
 export class DisplayPersonComponent implements OnInit {   //, OnChanges 
    private selectedPersonId: number;
   @Input() person: Person;
+  @Input() searchTerm: string;
+  @Input() emailSearch: string;
+  @Input() findPhoto: string;
 
    // //cards scroll-through design below- (other parts in list-person.comp)
 
@@ -37,12 +40,20 @@ export class DisplayPersonComponent implements OnInit {   //, OnChanges
   //   }
   // }
 
-  constructor(private _route: ActivatedRoute) { }
+  constructor(private _route: ActivatedRoute,
+              private _router: Router) { }
 
   ngOnInit() {
     this.selectedPersonId = +this._route.snapshot.paramMap.get('id');
   }
-  getPersonNameAndEmail(): string {
-    return this.person.name + ', Email:  ' + this.person.email ;
+  viewPerson() {
+    this._router.navigate(['/persons', this.person.id], {
+      queryParams: { 'searchTerm': this.searchTerm, 'emailSearch': this.emailSearch, 'findPhoto': this.findPhoto } 
+  // parameters on route optional, retain across multip.e rtes, NOT part of rte ptrn matching 
+    })
   }
+  editPerson() {
+    this._router.navigate(['/edit', this.person.id]); 
+  }
+
 }

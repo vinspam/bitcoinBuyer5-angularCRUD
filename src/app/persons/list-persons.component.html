@@ -17,26 +17,22 @@
     </div>
 
     <button class="btn btn-primary clear-input" (click)="clearInput()">Clear</button>
-</div>
-<h4 #h4Variable></h4>
+</div> 
 <h4 *ngIf="filteredPersons.length===0" class="none">Oops! Search yielded no results. </h4>
 
-<div *ngFor="let person of filteredPersons">
-    <!-- | personFilter:searchTerm     ::Dont use filter property ... after 2x,3x...remove filter pipe!-->
-    <!-- Call child component methods/properties using Template Reference Variable --> 
-    <div (click)="onClick(person.id)" class="pointerCursor">
-        <div (click)="h4Variable.innerHTML = childComponent.getPersonNameAndEmail()">
-            <tm-display-person [person]="person" #childComponent (notify)="handleNotify($event)"></tm-display-person>
-        </div>
-    </div>
+<div *ngFor="let person of filteredPersons">   <!-- | personFilter:searchTerm   -->
+ 
+        <tm-display-person 
+            [person]="person"
+            [searchTerm]="searchTerm"
+            [emailSearch]="emailSearch"
+            [findPhoto]="findPhoto" 
+        ></tm-display-person> 
 </div>
-
-<h3 *ngIf="dataFromChild"> {{ dataFromChild?.name }}, phone : {{ dataFromChild?.phone }}</h3>
-
+ 
 <!-- cards scroll-through design below  (other parts in display-person.comp)-->
 
 <!-- <button (click)="nextPerson()" class="btn btn-primary">
     View Next Employee
-</button>
-<br /><br /> 
-<tm-display-person [person]="personToDisplay" [personId]="personToDisplay.id"></tm-display-person> -->
+</button> 
+ -->

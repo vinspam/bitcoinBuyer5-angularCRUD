@@ -44,7 +44,13 @@ const tmRoutes: Routes = [
   },
 
   {
-    path: 'create',
+    path: 'edit/:id',
+    component: CreatePersonComponent,
+    canDeactivate: [CreatePersonCanDeactivateGuardService]
+  }, 
+
+  {
+    path: '',
     component: CreatePersonComponent,
     canDeactivate: [CreatePersonCanDeactivateGuardService]
   },
@@ -52,7 +58,7 @@ const tmRoutes: Routes = [
   {
     path: 'persons/:id',
     component: PersonDetailsComponent,
-    canActivate: [PersonDetailsGuardService] 
+    canActivate: [PersonDetailsGuardService]
   },
 
   {

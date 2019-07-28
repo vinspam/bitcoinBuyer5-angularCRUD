@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Acquaintance } from '../models/acquaintance.model'; 
 import { Person } from '../models/person.model';
 import { PersonService } from '../services/person.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'tm-create-person',
@@ -13,22 +13,13 @@ import { Router } from '@angular/router';
 export class CreatePersonComponent implements OnInit {
   //contactType="email";
   //isActive=true
+  datePickerConfig:any;
   previewPhoto = false;
+  panelTitle:string;
   dateOfBirth: Date = new Date(2018,0,30)
   @ViewChild('personForm') public createPersonForm: NgForm;
   
-  person: Person = {
-    id: null,
-    name: null, 
-    email: '', 
-    phone: null, 
-    contactType: null, 
-    acquaintance: null, 
-    dateOfBirth: null, 
-    isActive: null,
-    photoPath: null
-
-  }; 
+  person: Person;
 
   acquaintances: Acquaintance[] = [  
     {id:1, name: 'Pre College'},
@@ -38,19 +29,47 @@ export class CreatePersonComponent implements OnInit {
     {id:5, name: 'Clubs &amp; Groups'},
     {id:6, name: 'Miscellaneous'} 
   ];
-  constructor(private _personService: PersonService, private _router: Router) {
-    // this.dataPickerConfig = Object.assign({}, 
-    //   {
-    //     containerClass: 'theme-dark-blue',
-    //     showWeekNumbers: true,
-    //     minDate: new Date(2018, 0,1),
-    //     maxDate: new Date(2018, 11,31),
-    //     dateInputFormat: 'DD/MM/YYYY'
-    //   });
+  constructor(private _personService: PersonService, 
+              private _router: Router,
+              private _route: ActivatedRoute) {
+    this.datePickerConfig = Object.assign({}, 
+      {
+        containerClass: 'theme-dark-blue',
+        // showWeekNumbers: true,
+        // minDate: new Date(2018, 0,1),
+        // maxDate: new Date(2018, 11,31),
+        dateInputFormat: 'yyyy-MM-dd'
+      });
   }
 
   ngOnInit() {
+    this._route.paramMap.subscribe(parameterMap => {
+      const id = +parameterMap.get('id');
+      this.getPerson(id);
+    })
   }
+
+  private getPerson(id) {
+    if(id===0) {
+      this.person  = {
+        id: null,
+        name: null, 
+        email: '', 
+        phone: null, 
+        contactType: null, 
+        acquaintance: null, // 'select'
+        dateOfBirth: null, 
+        isActive: null,
+        photoPath: null 
+      }; 
+      this.panelTitle = 'Add New Contact';
+      this.createPersonForm.reset();
+    } else {
+      this.person = Object.assign({}, this._personService.getPerson(id));
+      this.panelTitle = 'Edit Contact';
+    }
+  }
+
   togglePhotoPreview() {
     this.previewPhoto = !this.previewPhoto;
   }

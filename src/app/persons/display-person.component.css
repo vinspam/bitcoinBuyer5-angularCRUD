@@ -7,3 +7,9 @@
     display: flex;
     align-items: center;
 }  
+button.btn {
+    width:65px;
+}
+button.btn:first-child {
+   margin-left:5px;
+}

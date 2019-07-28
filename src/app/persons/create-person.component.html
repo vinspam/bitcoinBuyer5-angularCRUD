@@ -1,7 +1,7 @@
 <form #personForm="ngForm" (ngSubmit)="savePerson()">   <!--resetting in html -> personForm.reset() -->
     <div class="panel panel-primary">
         <div class="panel-heading">
-          <h3 class="panel-title">Add New Contact</h3>
+          <h3 class="panel-title">{{panelTitle}}</h3>
         </div>
         <div class="panel-body">
           <div class="form-group" [class.has-error]="name.invalid && name.touched"

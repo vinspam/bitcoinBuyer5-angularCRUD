@@ -48,9 +48,8 @@ export class ListPersonsComponent implements OnInit {
   }
   photoFilterPersons(searchString: string) {
     return this.persons.filter(person => person.photoPath.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
-  } 
-
-  dataFromChild: Person;
+  }
+ 
   // personToDisplay: Person;
   // private arrayIndex = 1;
 
@@ -88,7 +87,7 @@ export class ListPersonsComponent implements OnInit {
     //this._personService.getPersons().subscribe(persList => this.persons = persList); 
 
     //this.filteredPersons = this.persons;  
- 
+
     console.log(this._route.snapshot.queryParamMap.has('searchTerm' || 'emailSearch' || 'findPhoto')); //true if param
     // console.log(this._route.snapshot.queryParamMap.get('searchTerm')); // returns value, (if not: null)
     // console.log(this._route.snapshot.queryParamMap.getAll('searchTerm')); //string array of all values
@@ -102,14 +101,6 @@ export class ListPersonsComponent implements OnInit {
     // !! TODO: when returning on 2nd + search...How to erase query parameters to refresh filter-search
     this.inputEmailDisplaySearch = '';
     // this.filteredPersons = [] ;
-  }
-  handleNotify(eventData: Person) {
-    this.dataFromChild = eventData;
-  }
-  onClick(personId: number) {
-    this._router.navigate(['/persons', personId], {
-      queryParams: { 'searchTerm': this.searchTerm, 'emailSearch': this.emailSearch, 'findPhoto': this.findPhoto } 
-  // when want parameters on route to be optional and retain across multip.e routes, NOT part of rte pattern matchaing 
-    })
-  }
+  } 
+ 
 }

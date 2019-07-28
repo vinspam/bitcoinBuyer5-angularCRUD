@@ -1,4 +1,4 @@
-<div class="panel panel-primary" (click)="handleClick()"> 
+<div class="panel panel-primary" (click)="handleClick()">
   <div class="panel-heading">
     <h3 class="panel-title">{{person.name}}</h3>
   </div>
@@ -78,8 +78,8 @@
   </div>
 
   <div class="panel footer">
-    <a class="btn btn-primary" [routerLink]="['/list', { id:person.id }]" queryParamsHandling="preserve">Back to Contacts List</a>
-    <!--also can ...{id:person.id, name:person.name}-->
+    <a class="btn btn-primary" [routerLink]="['/list', { id:person.id }]" queryParamsHandling="preserve">
+      Back to Contacts List</a>
     <button class="btn btn-primary pull-right" (click)="viewNextPerson()">
       View Next Contact
     </button>
