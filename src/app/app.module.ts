@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SelectRequiredValidatorDirective } from './shared/select-required-validator.directive';
-// import { PersonFilterPipe } from './shared/person-filter.pipe';
+import { PersonFilterPipe } from './shared/person-filter.pipe';
 import { PageNotFoundComponent } from './shared/page-not-found.component';
 
 import { PersonService } from './services/person.service';
@@ -83,7 +83,7 @@ const tmRoutes: Routes = [
     DisplayPersonComponent,
     PersonDetailsComponent,
     PageNotFoundComponent,
-    //PersonFilterPipe,
+    PersonFilterPipe,
     SelectRequiredValidatorDirective,
     AnimationsComponent,
     ArraymakerComponent,

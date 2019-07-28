@@ -9,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 
 export class DisplayPersonComponent implements OnInit {   //, OnChanges 
-   private selectedPersonId: number;
+  selectedPersonId: number;
   @Input() person: Person;
   @Input() searchTerm: string;
   @Input() emailSearch: string;
