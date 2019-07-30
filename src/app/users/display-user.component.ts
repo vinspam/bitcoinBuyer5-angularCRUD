@@ -1,6 +1,7 @@
-import { Component, OnInit, Input  } from '@angular/core'; // , OnChanges, SimpleChanges
+import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core'; // , OnChanges, SimpleChanges
 import { User } from '../models/user.model';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'tm-display-user',
@@ -14,7 +15,7 @@ export class DisplayUserComponent implements OnInit {   //, OnChanges
   @Input() searchTerm: string;
   @Input() emailSearch: string;
   @Input() findPhoto: string;
-
+  @Output() notifyDelete: EventEmitter<number> = new EventEmitter<number>();
    // //cards scroll-through design below- (other parts in list-user.comp)
 
   // @Input() userId: number;
@@ -41,7 +42,8 @@ export class DisplayUserComponent implements OnInit {   //, OnChanges
   // }
 
   constructor(private _route: ActivatedRoute,
-              private _router: Router) { }
+              private _router: Router,
+              private _userService: UserService) { }
 
   ngOnInit() {
     this.selectedUserId = +this._route.snapshot.paramMap.get('id');
@@ -55,5 +57,8 @@ export class DisplayUserComponent implements OnInit {   //, OnChanges
   editUser() {
     this._router.navigate(['/edit', this.user.id]); 
   }
-
+  deleteUser() {
+    this._userService.deleteUser(this.user.id);
+    this.notifyDelete.emit(this.user.id);
+  }
 }

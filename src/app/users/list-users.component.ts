@@ -79,7 +79,12 @@ export class ListUsersComponent implements OnInit {
       this.filteredUsers = this.users;
     }
   }
-
+  onDeleteNotification(id: number) {
+    const i = this.filteredUsers.findIndex(u => u.id === id);
+    if (i !== -1) {
+      this.filteredUsers.splice(i, 1);
+    }
+  }
   ngOnInit() {
     //this.userToDisplay = this.users[0];
     this.inputEmailDisplaySearch = "";

@@ -56,20 +56,26 @@ export class UserService {
     return Observable.of(this.listUsers);
   }
   getUser(id: number): User {
-    return this.listUsers.find(e => e.id === id)
+    return this.listUsers.find(u => u.id === id)
   }
+ 
   save(user: User) {
     if (user.id === null) {
-      const maxId = this.listUsers.reduce(function (p1, p2) {
-        return (p1.id > p2.id) ? p1 : p2;
+      const maxId = this.listUsers.reduce(function (u1, u2) {
+        return (u1.id > u2.id) ? u1 : u2;
       }).id
       user.id = maxId + 1;
       this.listUsers.push(user);
     } else {
-      const foundIdx = this.listUsers.findIndex(p => p.id === user.id);
+      const foundIdx = this.listUsers.findIndex(u => u.id === user.id);
       this.listUsers[foundIdx] = user;
+    } 
+  }
+  
+  deleteUser(id: number) {
+    const i = this.listUsers.findIndex(u => u.id === id);
+    if (i !== -1) {
+      this.listUsers.splice(i, 1);
     }
-
-
   }
 }
