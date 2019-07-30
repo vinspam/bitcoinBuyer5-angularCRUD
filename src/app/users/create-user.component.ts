@@ -1,25 +1,25 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Acquaintance } from '../models/acquaintance.model'; 
-import { Person } from '../models/person.model';
-import { PersonService } from '../services/person.service';
+import { User } from '../models/user.model';
+import { UserService } from '../services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'tm-create-person',
-  templateUrl: './create-person.component.html',
-  styleUrls: ['./create-person.component.css']
+  selector: 'tm-create-user',
+  templateUrl: './create-user.component.html',
+  styleUrls: ['./create-user.component.css']
 })
-export class CreatePersonComponent implements OnInit {
+export class CreateUserComponent implements OnInit {
   //contactType="email";
   //isActive=true
   datePickerConfig:any;
   previewPhoto = false;
   panelTitle:string;
   dateOfBirth: Date = new Date(2018,0,30)
-  @ViewChild('personForm') public createPersonForm: NgForm;
+  @ViewChild('userForm') public createUserForm: NgForm;
   
-  person: Person;
+  user: User;
 
   acquaintances: Acquaintance[] = [  
     {id:1, name: 'Pre College'},
@@ -29,7 +29,7 @@ export class CreatePersonComponent implements OnInit {
     {id:5, name: 'Clubs &amp; Groups'},
     {id:6, name: 'Miscellaneous'} 
   ];
-  constructor(private _personService: PersonService, 
+  constructor(private _userService: UserService, 
               private _router: Router,
               private _route: ActivatedRoute) {
     this.datePickerConfig = Object.assign({}, 
@@ -45,13 +45,13 @@ export class CreatePersonComponent implements OnInit {
   ngOnInit() {
     this._route.paramMap.subscribe(parameterMap => {
       const id = +parameterMap.get('id');
-      this.getPerson(id);
+      this.getUser(id);
     })
   }
 
-  private getPerson(id) {
+  private getUser(id) {
     if(id===0) {
-      this.person  = {
+      this.user  = {
         id: null,
         name: null, 
         email: '', 
@@ -63,9 +63,9 @@ export class CreatePersonComponent implements OnInit {
         photoPath: null 
       }; 
       this.panelTitle = 'Add New Contact';
-      this.createPersonForm.reset();
+      this.createUserForm.reset();
     } else {
-      this.person = Object.assign({}, this._personService.getPerson(id));
+      this.user = Object.assign({}, this._userService.getUser(id));
       this.panelTitle = 'Edit Contact';
     }
   }
@@ -73,10 +73,10 @@ export class CreatePersonComponent implements OnInit {
   togglePhotoPreview() {
     this.previewPhoto = !this.previewPhoto;
   }
-  savePerson(): void { 
-    const newPerson: Person = Object.assign ({}, this.person);
-    this._personService.save(newPerson); 
-    this.createPersonForm.reset();
+  saveUser(): void { 
+    const newUser: User = Object.assign ({}, this.user);
+    this._userService.save(newUser); 
+    this.createUserForm.reset();
     this._router.navigate(['/']);
   }
 }

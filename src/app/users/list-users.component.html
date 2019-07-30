@@ -18,21 +18,21 @@
 
     <button class="btn btn-primary clear-input" (click)="clearInput()">Clear</button>
 </div> 
-<h4 *ngIf="filteredPersons.length===0" class="none">Oops! Search yielded no results. </h4>
+<h4 *ngIf="filteredUsers.length===0" class="none">Oops! Search yielded no results. </h4>
 
-<div *ngFor="let person of filteredPersons">   <!-- | personFilter:searchTerm   -->
+<div *ngFor="let user of filteredUsers">   <!-- | userFilter:searchTerm   -->
  
-        <tm-display-person 
-            [person]="person"
+        <tm-display-user 
+            [user]="user"
             [searchTerm]="searchTerm"
             [emailSearch]="emailSearch"
             [findPhoto]="findPhoto" 
-        ></tm-display-person> 
+        ></tm-display-user> 
 </div>
  
-<!-- cards scroll-through design below  (other parts in display-person.comp)-->
+<!-- cards scroll-through design below  (other parts in display-user.comp)-->
 
-<!-- <button (click)="nextPerson()" class="btn btn-primary">
+<!-- <button (click)="nextUser()" class="btn btn-primary">
     View Next Employee
 </button> 
  -->

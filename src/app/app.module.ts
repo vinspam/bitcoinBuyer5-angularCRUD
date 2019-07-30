@@ -6,20 +6,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SelectRequiredValidatorDirective } from './shared/select-required-validator.directive';
-import { PersonFilterPipe } from './shared/person-filter.pipe';
+import { UserFilterPipe } from './shared/user-filter.pipe';
 import { PageNotFoundComponent } from './shared/page-not-found.component';
 
-import { PersonService } from './services/person.service';
-import { PersonListResolverService } from './services/person-list-resolver.service';
-import { CreatePersonCanDeactivateGuardService } from './services/create-person-can-deactivate-guard.service';
-import { PersonDetailsGuardService } from './services/person-details-guard.service';
+import { UserService } from './services/user.service';
+import { UserListResolverService } from './services/user-list-resolver.service';
+import { CreateUserCanDeactivateGuardService } from './services/create-user-can-deactivate-guard.service';
+import { UserDetailsGuardService } from './services/user-details-guard.service';
 import { SidebarService } from './layout/sidebar.service';
 
 import { AppComponent } from './app.component';
-import { ListPersonsComponent } from './persons/list-persons.component';
-import { CreatePersonComponent } from './persons/create-person.component';
-import { DisplayPersonComponent } from './persons/display-person.component';
-import { PersonDetailsComponent } from './persons/person-details.component';
+import { ListUsersComponent } from './users/list-users.component';
+import { CreateUserComponent } from './users/create-user.component';
+import { DisplayUserComponent } from './users/display-user.component';
+import { UserDetailsComponent } from './users/user-details.component';
 
 import { AnimationsComponent } from './animations/animations.component';
 import { ArraymakerComponent } from './arraymaker/arraymaker.component';
@@ -33,32 +33,32 @@ import { DetailbarComponent } from './layout/detailbar.component';
 const tmRoutes: Routes = [
   {
     path: '',
-    component: ListPersonsComponent,
-    resolve: { personList: PersonListResolverService }
+    component: ListUsersComponent,
+    resolve: { userList: UserListResolverService }
   },
 
   {
     path: 'list',
-    component: ListPersonsComponent,
-    resolve: { personList: PersonListResolverService }
+    component: ListUsersComponent,
+    resolve: { userList: UserListResolverService }
   },
 
   {
     path: 'edit/:id',
-    component: CreatePersonComponent,
-    canDeactivate: [CreatePersonCanDeactivateGuardService]
+    component: CreateUserComponent,
+    canDeactivate: [CreateUserCanDeactivateGuardService]
   }, 
 
   {
     path: '',
-    component: CreatePersonComponent,
-    canDeactivate: [CreatePersonCanDeactivateGuardService]
+    component: CreateUserComponent,
+    canDeactivate: [CreateUserCanDeactivateGuardService]
   },
 
   {
-    path: 'persons/:id',
-    component: PersonDetailsComponent,
-    canActivate: [PersonDetailsGuardService]
+    path: 'users/:id',
+    component: UserDetailsComponent,
+    canActivate: [UserDetailsGuardService]
   },
 
   {
@@ -78,12 +78,12 @@ const tmRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ListPersonsComponent,
-    CreatePersonComponent,
-    DisplayPersonComponent,
-    PersonDetailsComponent,
+    ListUsersComponent,
+    CreateUserComponent,
+    DisplayUserComponent,
+    UserDetailsComponent,
     PageNotFoundComponent,
-    PersonFilterPipe,
+    UserFilterPipe,
     SelectRequiredValidatorDirective,
     AnimationsComponent,
     ArraymakerComponent,
@@ -100,11 +100,11 @@ const tmRoutes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(tmRoutes, { enableTracing: false })
   ],
-  providers: [PersonService,
+  providers: [UserService,
     SidebarService,
-    CreatePersonCanDeactivateGuardService,
-    PersonDetailsGuardService,
-    PersonListResolverService],
+    CreateUserCanDeactivateGuardService,
+    UserDetailsGuardService,
+    UserListResolverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

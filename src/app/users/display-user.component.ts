@@ -1,38 +1,38 @@
 import { Component, OnInit, Input  } from '@angular/core'; // , OnChanges, SimpleChanges
-import { Person } from '../models/person.model';
+import { User } from '../models/user.model';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'tm-display-person',
-  templateUrl: './display-person.component.html',
-  styleUrls: ['./display-person.component.css']
+  selector: 'tm-display-user',
+  templateUrl: './display-user.component.html',
+  styleUrls: ['./display-user.component.css']
 })
 
-export class DisplayPersonComponent implements OnInit {   //, OnChanges 
-  selectedPersonId: number;
-  @Input() person: Person;
+export class DisplayUserComponent implements OnInit {   //, OnChanges 
+  selectedUserId: number;
+  @Input() user: User;
   @Input() searchTerm: string;
   @Input() emailSearch: string;
   @Input() findPhoto: string;
 
-   // //cards scroll-through design below- (other parts in list-person.comp)
+   // //cards scroll-through design below- (other parts in list-user.comp)
 
-  // @Input() personId: number;
-  // private _person: Person; 
+  // @Input() userId: number;
+  // private _user: User; 
   
   // @Input()
-  // set person(val: Person) {
-  //   console.log('Previous : ' + (this._person ? this._person.name : 'NULL'));
+  // set user(val: User) {
+  //   console.log('Previous : ' + (this._user ? this._user.name : 'NULL'));
   //   console.log('Current : ' + (val.name));
-  //   this._person = val;
+  //   this._user = val;
   // }
-  // get person(): Person {
-  //   return this._person;
+  // get user(): User {
+  //   return this._user;
   // }
   
   // ngOnChanges(changes: SimpleChanges) {
   //   for (const propName of Object.keys(changes)) {
-  //     console.log(propName); // output is ... person
+  //     console.log(propName); // output is ... user
   //     const change = changes[propName];
   //     const from = JSON.stringify(change.previousValue);
   //     const to = JSON.stringify(change.currentValue);
@@ -44,16 +44,16 @@ export class DisplayPersonComponent implements OnInit {   //, OnChanges
               private _router: Router) { }
 
   ngOnInit() {
-    this.selectedPersonId = +this._route.snapshot.paramMap.get('id');
+    this.selectedUserId = +this._route.snapshot.paramMap.get('id');
   }
-  viewPerson() {
-    this._router.navigate(['/persons', this.person.id], {
+  viewUser() {
+    this._router.navigate(['/users', this.user.id], {
       queryParams: { 'searchTerm': this.searchTerm, 'emailSearch': this.emailSearch, 'findPhoto': this.findPhoto } 
   // parameters on route optional, retain across multip.e rtes, NOT part of rte ptrn matching 
     })
   }
-  editPerson() {
-    this._router.navigate(['/edit', this.person.id]); 
+  editUser() {
+    this._router.navigate(['/edit', this.user.id]); 
   }
 
 }

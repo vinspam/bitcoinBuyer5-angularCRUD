@@ -1,17 +1,17 @@
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { PersonService } from './person.service';
+import { UserService } from './user.service';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class PersonDetailsGuardService implements CanActivate {
-    constructor(private _personService:PersonService,
+export class UserDetailsGuardService implements CanActivate {
+    constructor(private _userService:UserService,
         private _router:Router) {
 
         }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        const personFound = !!this._personService.getPerson(+route.paramMap.get('id'));
+        const userFound = !!this._userService.getUser(+route.paramMap.get('id'));
 
-        if (personFound) {
+        if (userFound) {
             return true;
         } else {
             this._router.navigate(['notfound']);

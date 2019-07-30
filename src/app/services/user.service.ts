@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Person } from '../models/person.model';
+import { User } from '../models/user.model';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 // import 'rxjs/add/observable/delay';
@@ -8,10 +8,10 @@ import 'rxjs/add/observable/of';
 //import { HttpClient } from '@angular/common/http'; 
 
 @Injectable()
-export class PersonService {
+export class UserService {
   //constructor(private httpClient: HttpClient) {}
 
-  private listPersons: Person[] = [
+  private listUsers: User[] = [
     {
       id: 1,
       name: 'Tom',
@@ -47,27 +47,27 @@ export class PersonService {
     }
   ];
 
-  // getPersons(): Observable<Person[]> {
-  //   return this.httpClient.get<Person[]>('http://localhost:3000/persons')
+  // getUsers(): Observable<User[]> {
+  //   return this.httpClient.get<User[]>('http://localhost:3000/users')
   // }
-  //getPersons(): Person[] {
-  // return this.listPersons;
-  getPersons(): Observable<Person[]> {
-    return Observable.of(this.listPersons);
+  //getUsers(): User[] {
+  // return this.listUsers;
+  getUsers(): Observable<User[]> {
+    return Observable.of(this.listUsers);
   }
-  getPerson(id: number): Person {
-    return this.listPersons.find(e => e.id === id)
+  getUser(id: number): User {
+    return this.listUsers.find(e => e.id === id)
   }
-  save(person: Person) {
-    if (person.id === null) {
-      const maxId = this.listPersons.reduce(function (p1, p2) {
+  save(user: User) {
+    if (user.id === null) {
+      const maxId = this.listUsers.reduce(function (p1, p2) {
         return (p1.id > p2.id) ? p1 : p2;
       }).id
-      person.id = maxId + 1;
-      this.listPersons.push(person);
+      user.id = maxId + 1;
+      this.listUsers.push(user);
     } else {
-      const foundIdx = this.listPersons.findIndex(p => p.id === person.id);
-      this.listPersons[foundIdx] = person;
+      const foundIdx = this.listUsers.findIndex(p => p.id === user.id);
+      this.listUsers[foundIdx] = user;
     }
 
 

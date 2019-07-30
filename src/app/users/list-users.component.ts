@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Person } from '../models/person.model';
-//import { PersonService } from '../services/person.service';
+import { User } from '../models/user.model';
+//import { UserService } from '../services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  // selector: 'tm-list-persons',
-  templateUrl: './list-persons.component.html',
-  styleUrls: ['./list-persons.component.css']
+  // selector: 'tm-list-users',
+  templateUrl: './list-users.component.html',
+  styleUrls: ['./list-users.component.css']
 })
-export class ListPersonsComponent implements OnInit {
+export class ListUsersComponent implements OnInit {
   inputEmailDisplaySearch: string;
-  persons: Person[];
-  filteredPersons: Person[]; //muyimprtante - no need to query webserver for each filter; returns full list without roundtrip
+  users: User[];
+  filteredUsers: User[]; //muyimprtante - no need to query webserver for each filter; returns full list without roundtrip
 
   private _searchTerm: string;
   private _emailSearch: string;
@@ -29,41 +29,41 @@ export class ListPersonsComponent implements OnInit {
 
   set searchTerm(value: string) {
     this._searchTerm = value;
-    this.filteredPersons = this.nameFilterPersons(value);
+    this.filteredUsers = this.nameFilterUsers(value);
   }
   set emailSearch(value: string) {
     this._emailSearch = value;
-    this.filteredPersons = this.emailfilterPersons(value);
+    this.filteredUsers = this.emailfilterUsers(value);
   }
   set findPhoto(value: string) {
     this._findPhoto = value;
-    this.filteredPersons = this.photoFilterPersons(value);
+    this.filteredUsers = this.photoFilterUsers(value);
   }
 
-  nameFilterPersons(searchString: string) {
-    return this.persons.filter(person => person.name.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+  nameFilterUsers(searchString: string) {
+    return this.users.filter(user => user.name.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
-  emailfilterPersons(searchString: string) {
-    return this.persons.filter(person => person.email.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+  emailfilterUsers(searchString: string) {
+    return this.users.filter(user => user.email.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
-  photoFilterPersons(searchString: string) {
-    return this.persons.filter(person => person.photoPath.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+  photoFilterUsers(searchString: string) {
+    return this.users.filter(user => user.photoPath.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
  
-  // personToDisplay: Person;
+  // userToDisplay: User;
   // private arrayIndex = 1;
 
-  constructor(    //private _personService: PersonService,
+  constructor(    //private _userService: UserService,
     private _router: Router,
     private _route: ActivatedRoute) {
-    this.persons = this._route.snapshot.data['personList'];
+    this.users = this._route.snapshot.data['userList'];
     // OBSERVABLE way: 
     // this._route.queryParamMap.subscribe((queryParams) => {
     //   if (queryParams.has('searchTerm')) {
     //     this.searchTerm = queryParams.get('searchTerm');
     //   } 
     //   else {
-    //     this.filteredPersons = this.persons;
+    //     this.filteredUsers = this.users;
     //   } 
     // });
     // SNAPSHOT WAY:
@@ -76,17 +76,17 @@ export class ListPersonsComponent implements OnInit {
     else if (this._route.snapshot.queryParamMap.has('findPhoto')) {
       this.findPhoto = this._route.snapshot.queryParamMap.get('findPhoto');
     } else {
-      this.filteredPersons = this.persons;
+      this.filteredUsers = this.users;
     }
   }
 
   ngOnInit() {
-    //this.personToDisplay = this.persons[0];
+    //this.userToDisplay = this.users[0];
     this.inputEmailDisplaySearch = "";
-    //this.persons = this._personService.getPersons();
-    //this._personService.getPersons().subscribe(persList => this.persons = persList); 
+    //this.users = this._userService.getUsers();
+    //this._userService.getUsers().subscribe(persList => this.users = persList); 
 
-    //this.filteredPersons = this.persons;  
+    //this.filteredUsers = this.users;  
 
     console.log(this._route.snapshot.queryParamMap.has('searchTerm' || 'emailSearch' || 'findPhoto')); //true if param
     // console.log(this._route.snapshot.queryParamMap.get('searchTerm')); // returns value, (if not: null)
@@ -100,7 +100,7 @@ export class ListPersonsComponent implements OnInit {
     this.findPhoto = '';
     // !! TODO: when returning on 2nd + search...How to erase query parameters to refresh filter-search
     this.inputEmailDisplaySearch = '';
-    // this.filteredPersons = [] ;
+    // this.filteredUsers = [] ;
   } 
  
 }
