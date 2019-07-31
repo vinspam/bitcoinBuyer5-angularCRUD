@@ -1,4 +1,4 @@
-export class Acquaintance {
+export class UserGroup {
     id: number;
     name: string;
 }

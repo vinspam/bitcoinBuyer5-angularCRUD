@@ -1,7 +1,12 @@
 
 .imageClass{
-    width: 180px;
-    height: 180px;
+    width:100%;
+    height:100%;
+    max-width: 160px;
+    max-height: 160px;
+}
+.imageContainer{
+    min-height: 160px;
 }
 .vertical-align {
     display: flex;

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Acquaintance } from '../models/acquaintance.model'; 
+import { UserGroup } from '../models/userGroup.model'; 
 import { User } from '../models/user.model';
 import { UserService } from '../services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -21,13 +21,13 @@ export class CreateUserComponent implements OnInit {
   
   user: User;
 
-  acquaintances: Acquaintance[] = [  
-    {id:1, name: 'Pre College'},
-    {id:2, name: 'College'},
-    {id:3, name: 'Ed Work'},
-    {id:4, name: 'Tech Work'},
-    {id:5, name: 'Clubs &amp; Groups'},
-    {id:6, name: 'Miscellaneous'} 
+  userGroups: UserGroup[] = [  
+    {id:1, name: 'CoinTrader Premium'},
+    {id:2, name: 'CoinTrader'},
+    {id:3, name: 'CoinTracker'},
+    {id:4, name: 'CoinWatcher (free)'},
+    {id:5, name: 'AltCoinWatcher (free)'},
+    {id:6, name: 'Administration'} 
   ];
   constructor(private _userService: UserService, 
               private _router: Router,
@@ -57,7 +57,7 @@ export class CreateUserComponent implements OnInit {
         email: '', 
         phone: null, 
         contactType: null, 
-        acquaintance: null, // 'select'
+        userGroup: 'select', // 'null', // 
         dateOfBirth: null, 
         isActive: null,
         photoPath: null 
@@ -65,7 +65,11 @@ export class CreateUserComponent implements OnInit {
       this.panelTitle = 'Add New Contact';
       this.createUserForm.reset();
     } else {
-      this.user = Object.assign({}, this._userService.getUser(id));
+      // this.user = Object.assign({}, this._userService.getUser(id));
+      this._userService.getUser(id).subscribe(
+        (user) => this.user = user,
+        (err: any) => console.log(err)
+      );
       this.panelTitle = 'Edit Contact';
     }
   }
@@ -74,9 +78,27 @@ export class CreateUserComponent implements OnInit {
     this.previewPhoto = !this.previewPhoto;
   }
   saveUser(): void { 
-    const newUser: User = Object.assign ({}, this.user);
-    this._userService.save(newUser); 
-    this.createUserForm.reset();
-    this._router.navigate(['/']);
+    // const newUser: User = Object.assign ({}, this.user); //no longer worry about addressing reference var
+    //this._userService.save(newUser)(
+      // this._userService.save(this.user).subscribe(
+      if (this.user.id === null) {
+        this._userService.addUser(this.user).subscribe(
+          (data: User) => {
+            console.log(data);
+            this.createUserForm.reset();
+            this._router.navigate(['/']);
+          },
+          (error: any) => console.log(error)
+        );
+      } else {
+        this._userService.updateUser(this.user).subscribe(
+          () => { 
+            this.createUserForm.reset();
+            this._router.navigate(['/']);
+          },
+          (error: any) => console.log(error)
+        );
+      } 
+   
   }
 }

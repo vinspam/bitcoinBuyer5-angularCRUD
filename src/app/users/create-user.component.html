@@ -1,5 +1,5 @@
 <form #userForm="ngForm" (ngSubmit)="saveUser()">   <!--resetting in html -> userForm.reset() -->
-    <div class="panel panel-primary">
+    <div class="panel panel-primary" *ngIf="user">
         <div class="panel-heading">
           <h3 class="panel-title">{{panelTitle}}</h3>
         </div>
@@ -19,9 +19,9 @@
           <div class="form-group"  [class.has-error]="email.invalid && email.touched"
                                    [class.has-success]="email.valid">
               <label for="email" class="control-label">Email<span class="required"> *</span></label>
-              <!-- [email]="user.email !== ''" -->
+              <!-- [email]="user.email !== ''"   required -->
               <input id="email"  name="email" 
-                      required 
+                       
                       pattern ="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
                       [(ngModel)]="user.email" 
                       type="text" class="form-control"
@@ -72,23 +72,23 @@
                   </div> 
               </div>
 
-              <div class="form-group"  [class.has-error]="acquaintance.touched && acquaintance.invalid" [class.has-success]="acquaintance.valid">
-                  <label for="acquaintance" class="control-label">Acquaintance<span class="required"> *</span></label>  
-                  <select 
-                  id="acquaintance"
-                  required
+              <div  class="form-group" [class.has-error]="userGroup.touched && userGroup.invalid" [class.has-success]="userGroup.valid">
+                  <label for="userGroup" class="control-label">UserGroup<span class="required"> *</span></label>  
+                  <select  
+                  id="userGroup"
+                  required 
                   appSelectValidator="select"
-                  name="acquaintance" 
-                  [(ngModel)]="user.acquaintance"
+                  name="userGroup" 
+                  [(ngModel)]="user.userGroup"
                   class="form-control"
-                  #acquaintance="ngModel">
-                    <option disabled  value="select"><em>Select Type of Acquaintance: </em></option>
-                    <option *ngFor="let acq of acquaintances" [value]="acq.id">
-                      {{acq.name}}
+                  #userGroup="ngModel">
+                    <option disabled  value="select"><em>Select Type of UserGroup: </em></option>
+                    <option  *ngFor="let group of userGroups" [value]="group.id">
+                      {{group.name}}
                     </option> 
                 </select> 
                 <span class="help-block"
-                *ngIf="acquaintance.touched && acquaintance.errors?.defaultSelected"> Acquaintance Type is required
+                *ngIf="userGroup.touched && userGroup.errors?.defaultSelected"> UserGroup Type is required
                 </span>
               </div>
 

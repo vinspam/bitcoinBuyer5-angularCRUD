@@ -21,8 +21,12 @@ export class UserDetailsComponent implements OnInit {
     // const id = +this._route.snapshot.paramMap.get('id'); // deprecated < ng 4.3 params['id'];
       this._route.paramMap.subscribe(params => {
           this._id = +params.get('id'); 
-          this.user = this._userService.getUser(this._id);
+          this._userService.getUser(this._id).subscribe(
+            (user) => this.user = user, 
+            (err:any) => console.log(err)
+          );
           // this.userList = this._userService.getUsers();
+          // this.user = this._userService.getUser(this._id);
     }); 
   }
    
