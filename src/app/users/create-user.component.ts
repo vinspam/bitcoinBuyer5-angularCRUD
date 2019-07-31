@@ -60,7 +60,7 @@ export class CreateUserComponent implements OnInit {
         userGroup: 'select', // 'null', // 
         dateOfBirth: null, 
         isActive: null,
-        photoPath: null 
+        photoPath: 'assets/images/m.png' 
       }; 
       this.panelTitle = 'Add New Contact';
       this.createUserForm.reset();
@@ -68,7 +68,7 @@ export class CreateUserComponent implements OnInit {
       // this.user = Object.assign({}, this._userService.getUser(id));
       this._userService.getUser(id).subscribe(
         (user) => this.user = user,
-        (err: any) => console.log(err)
+        (err: any) => console.log('create-user.comp:' +  err)
       );
       this.panelTitle = 'Edit Contact';
     }

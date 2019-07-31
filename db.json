@@ -35,25 +35,25 @@
     },
     {
       "id": 4,
-      "name": "newest additino",
+      "name": "newest addition",
       "email": "john@John.com",
-      "phone": null,
-      "contactType": null,
-      "userGroup": "1",
-      "dateOfBirth": null,
-      "isActive": null,
-      "photoPath": " assets/images/b.png"
+      "phone": "445 454 4545",
+      "contactType": "email",
+      "userGroup": "6",
+      "dateOfBirth": "2019-07-09",
+      "isActive": true,
+      "photoPath": " assets/images/l.png"
     },
     {
       "id": 5,
       "name": "er",
       "email": "er@er.er",
-      "phone": null,
-      "contactType": null,
-      "userGroup": "2",
-      "dateOfBirth": null,
+      "phone": "4544545545",
+      "contactType": "phone",
+      "userGroup": "3",
+      "dateOfBirth": "2019-07-12",
       "isActive": null,
-      "photoPath": "assets/images/b.png"
+      "photoPath": "assets/images/m.png"
     },
     {
       "id": 6,
@@ -68,14 +68,58 @@
     },
     {
       "id": 7,
-      "name": "s",
-      "email": "",
+      "name": "namer",
+      "email": "namer@r.r",
+      "phone": "34343434",
+      "contactType": "phone",
+      "userGroup": "1",
+      "dateOfBirth": "2019-07-10",
+      "isActive": true,
+      "photoPath": "assets/images/f.png"
+    },
+    {
+      "id": 8,
+      "name": "th",
+      "email": "th@m.m",
       "phone": null,
       "contactType": null,
       "userGroup": "3",
       "dateOfBirth": null,
       "isActive": null,
       "photoPath": "assets/images/b.png"
+    },
+    {
+      "id": 9,
+      "name": "r",
+      "email": "e@2.2",
+      "phone": null,
+      "contactType": null,
+      "userGroup": "3",
+      "dateOfBirth": null,
+      "isActive": null,
+      "photoPath": "assets/images/m.png"
+    },
+    {
+      "id": 10,
+      "name": "rt",
+      "email": "r@3.3",
+      "phone": null,
+      "contactType": null,
+      "userGroup": "4",
+      "dateOfBirth": null,
+      "isActive": null,
+      "photoPath": "assets/images/o.png"
+    },
+    {
+      "id": 11,
+      "name": "f",
+      "email": "f@f.f",
+      "phone": null,
+      "contactType": null,
+      "userGroup": "1",
+      "dateOfBirth": "2019-07-12",
+      "isActive": null,
+      "photoPath": "assets/images/m.png"
     }
   ],
   "coins": [

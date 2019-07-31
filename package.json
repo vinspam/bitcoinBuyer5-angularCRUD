@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "json-server --watch db.json && ng serve",
+    "start": "ng serve",
     "serve": "json-server --watch db.json",
     "build": "ng build --prod",
     "test": "ng test",

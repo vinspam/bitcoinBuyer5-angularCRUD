@@ -1,10 +1,14 @@
 # Angular5Tmm
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.6.
+## TO RUN: 
+####npm install
+####npm run serve
+####npm run start
 
 ## SCRIPTS  
 ####  "scripts": {
 ####    "ng": "ng",
-####    "start": "json-server --watch db.json && ng serve",
+####    "start": "ng serve",
 ####    "serve": "json-server --watch db.json",
 ####    "build": "ng build --prod",
 ####    "test": "ng test",
@@ -13,7 +17,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ####    "pwa": "ng build --prod && sw-precache --root=dist --config=precache-config.js"
 ####  }
 
-## Data server & Dev server
+## Dev server
 Run `npm run start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Data server
