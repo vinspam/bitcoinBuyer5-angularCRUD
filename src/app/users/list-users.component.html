@@ -30,6 +30,9 @@
             (notifyDelete)="onDeleteNotification($event)"
         ></tm-display-user> 
 </div>
+<div *ngIf="error">
+    {{ error }}
+</div>
  
 <!-- cards scroll-through design below  (other parts in display-user.comp)-->
 

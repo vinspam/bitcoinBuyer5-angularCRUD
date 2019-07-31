@@ -9,13 +9,15 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./display-user.component.css']
 })
 
+// display-user IS CHILD of list-users
 export class DisplayUserComponent implements OnInit {   //, OnChanges 
   selectedUserId: number;
   @Input() user: User;
   @Input() searchTerm: string;
   @Input() emailSearch: string;
   @Input() findPhoto: string;
-  @Output() notifyDelete: EventEmitter<number> = new EventEmitter<number>();
+  @Output() notifyDelete: EventEmitter<number> = new EventEmitter<number>(); // Inform Parent of deletion (for filteredUsers update)
+  confirmDelete = false;
    // //cards scroll-through design below- (other parts in list-user.comp)
 
   // @Input() userId: number;
@@ -47,7 +49,7 @@ export class DisplayUserComponent implements OnInit {   //, OnChanges
 
   ngOnInit() {
     this.selectedUserId = +this._route.snapshot.paramMap.get('id');
-  }
+  } 
   viewUser() {
     this._router.navigate(['/users', this.user.id], {
       queryParams: { 'searchTerm': this.searchTerm, 'emailSearch': this.emailSearch, 'findPhoto': this.findPhoto } 
@@ -58,7 +60,7 @@ export class DisplayUserComponent implements OnInit {   //, OnChanges
     this._router.navigate(['/edit', this.user.id]); 
   }
   deleteUser() {
-    this._userService.deleteUser(this.user.id);
-    this.notifyDelete.emit(this.user.id);
+    this._userService.deleteUser(this.user.id);  // Inform Parent of deletion (for filteredUsers update)
+    this.notifyDelete.emit(this.user.id);  // Inform Parent of deletion (for filteredUsers update)
   }
 }

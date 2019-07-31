@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations' 
 
 import { SelectRequiredValidatorDirective } from './shared/select-required-validator.directive';
 import { UserFilterPipe } from './shared/user-filter.pipe';
@@ -28,6 +28,7 @@ import { SidebarComponent } from './layout/sidebar.component';
 import { SidebarToggleComponent } from './layout/sidebar-toggle.component';
 import { DetailbarToggleComponent } from './layout/detailbar-toggle.component';
 import { DetailbarComponent } from './layout/detailbar.component';
+import { AccordionComponent } from './layout/accordion.component';
 
 
 const tmRoutes: Routes = [
@@ -92,6 +93,7 @@ const tmRoutes: Routes = [
     SidebarToggleComponent,
     DetailbarToggleComponent,
     DetailbarComponent,
+    AccordionComponent 
   ],
   imports: [
     BrowserModule,
@@ -101,7 +103,7 @@ const tmRoutes: Routes = [
     RouterModule.forRoot(tmRoutes, { enableTracing: false })
   ],
   providers: [UserService,
-    SidebarService,
+    SidebarService, 
     CreateUserCanDeactivateGuardService,
     UserDetailsGuardService,
     UserListResolverService],

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user.model';
 //import { UserService } from '../services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { UserListResolverService } from '../services/user-list-resolver.service';
 @Component({
   // selector: 'tm-list-users',
   templateUrl: './list-users.component.html',
@@ -12,7 +12,8 @@ export class ListUsersComponent implements OnInit {
   inputEmailDisplaySearch: string;
   users: User[];
   filteredUsers: User[]; //muyimprtante - no need to query webserver for each filter; returns full list without roundtrip
-
+  error: string;
+  
   private _searchTerm: string;
   private _emailSearch: string;
   private _findPhoto: string;
@@ -56,7 +57,13 @@ export class ListUsersComponent implements OnInit {
   constructor(    //private _userService: UserService,
     private _router: Router,
     private _route: ActivatedRoute) {
-    this.users = this._route.snapshot.data['userList'];
+    //this.users = this._route.snapshot.data['userList'];
+    const resolvedData: User[] | string = this._route.snapshot.data['userList'];
+    if(Array.isArray(resolvedData)) {
+      this.users = resolvedData;
+    } else {
+      this.error = resolvedData;
+    }
     // OBSERVABLE way: 
     // this._route.queryParamMap.subscribe((queryParams) => {
     //   if (queryParams.has('searchTerm')) {
