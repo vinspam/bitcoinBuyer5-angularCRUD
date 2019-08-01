@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core'; // , OnChanges, SimpleChanges
 import { User } from '../models/user.model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserService } from '../services/user.service';
+import { UserService } from '../services/user.service'; 
 
 @Component({
   selector: 'tm-display-user',
@@ -12,6 +12,7 @@ import { UserService } from '../services/user.service';
 // display-user IS CHILD of list-users
 export class DisplayUserComponent implements OnInit {   //, OnChanges 
   selectedUserId: number;
+ 
   @Input() user: User;
   @Input() searchTerm: string;
   @Input() emailSearch: string;
@@ -60,7 +61,11 @@ export class DisplayUserComponent implements OnInit {   //, OnChanges
     this._router.navigate(['/edit', this.user.id]); 
   }
   deleteUser() {
-    this._userService.deleteUser(this.user.id);  // Inform Parent of deletion (for filteredUsers update)
+    this._userService.deleteUser(this.user.id).subscribe(
+      () => console.log(`User with ID ${this.user.id} hath been deleted ...`),
+      (err) => console.log(err)
+    );
     this.notifyDelete.emit(this.user.id);  // Inform Parent of deletion (for filteredUsers update)
+    // this._userService.deleteUser(this.user.id);  // Inform Parent of deletion (for filteredUsers update)
   }
 }

@@ -15,7 +15,7 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
   baseUrl = 'http://localhost:3000/users'; 
 
-  private listUsers: User[] = []// TEMPORARY
+  // private listUsers: User[] = []//  
     // [
     //   {
     //     "id": 1,
@@ -67,13 +67,13 @@ export class UserService {
   }
 
   addUser(user: User): Observable<User> {
-    // if (user.id === null) {
     return this.httpClient.post<User>(this.baseUrl, user, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     })
       .pipe(catchError(this.handleError));
+    // if (user.id === null) {
     // const maxId = this.listUsers.reduce(function (u1, u2) {
     //   return (u1.id > u2.id) ? u1 : u2;
     // }).id
@@ -94,11 +94,12 @@ export class UserService {
       .pipe(catchError(this.handleError));
   }
 
-  deleteUser(id: number) {
-    const i = this.listUsers.findIndex(u => u.id === id);
-    if (i !== -1) {
-      this.listUsers.splice(i, 1);
-    }
+  deleteUser(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.baseUrl}/${id}`)
+      .pipe(catchError(this.handleError));
+    // const i = this.listUsers.findIndex(u => u.id === id);
+    // if (i !== -1) {
+    //   this.listUsers.splice(i, 1); 
   }
 }
 

@@ -16,7 +16,7 @@
       "name": "Thomas",
       "email": "thomas@gmail.com",
       "phone": 5055087707,
-      "contactType": "phone",
+      "contactType": "email",
       "userGroup": "2",
       "dateOfBirth": "1976/09/03",
       "isActive": true,
@@ -56,17 +56,6 @@
       "photoPath": "assets/images/m.png"
     },
     {
-      "id": 6,
-      "name": "rt",
-      "email": "rt@e.e",
-      "phone": null,
-      "contactType": null,
-      "userGroup": "6",
-      "dateOfBirth": null,
-      "isActive": null,
-      "photoPath": "assets/images/b.png"
-    },
-    {
       "id": 7,
       "name": "namer",
       "email": "namer@r.r",
@@ -78,46 +67,35 @@
       "photoPath": "assets/images/f.png"
     },
     {
-      "id": 8,
-      "name": "th",
-      "email": "th@m.m",
-      "phone": null,
-      "contactType": null,
-      "userGroup": "3",
-      "dateOfBirth": null,
-      "isActive": null,
-      "photoPath": "assets/images/b.png"
-    },
-    {
-      "id": 9,
-      "name": "r",
-      "email": "e@2.2",
-      "phone": null,
-      "contactType": null,
-      "userGroup": "3",
-      "dateOfBirth": null,
-      "isActive": null,
-      "photoPath": "assets/images/m.png"
-    },
-    {
       "id": 10,
       "name": "rt",
       "email": "r@3.3",
-      "phone": null,
-      "contactType": null,
+      "phone": "333333",
+      "contactType": "email",
       "userGroup": "4",
-      "dateOfBirth": null,
-      "isActive": null,
-      "photoPath": "assets/images/o.png"
+      "dateOfBirth": "2019-07-11",
+      "isActive": true,
+      "photoPath": "assets/images/q.png"
     },
     {
       "id": 11,
       "name": "f",
       "email": "f@f.f",
-      "phone": null,
-      "contactType": null,
-      "userGroup": "1",
+      "phone": "4564564545",
+      "contactType": "email",
+      "userGroup": "2",
       "dateOfBirth": "2019-07-12",
+      "isActive": true,
+      "photoPath": "assets/images/m.png"
+    },
+    {
+      "id": 12,
+      "name": "newnew",
+      "email": "new@new.new",
+      "phone": "777-777-777",
+      "contactType": "email",
+      "userGroup": "6",
+      "dateOfBirth": "2019-07-23",
       "isActive": null,
       "photoPath": "assets/images/m.png"
     }

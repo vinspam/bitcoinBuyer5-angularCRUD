@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../services/user.service';
-import { UserGroup } from '../models/userGroup.model'; 
+import { UserService } from '../services/user.service'; 
 import { User } from '../models/user.model';
 
 @Component({
@@ -13,16 +12,7 @@ export class UserDetailsComponent implements OnInit {
   @Output() notify: EventEmitter<User> = new EventEmitter<User>();
   private _id: number;
   // userList: User[];
-  user: User; 
-
-  userGroups: UserGroup[] = [  
-    {id:1, name: 'CoinTrader Premium'},
-    {id:2, name: 'CoinTrader'},
-    {id:3, name: 'CoinTracker'},
-    {id:4, name: 'CoinWatcher (free)'},
-    {id:5, name: 'AltCoinWatcher (free)'},
-    {id:6, name: 'Administration'} 
-  ];
+  user: User;  
 
   constructor(private _route: ActivatedRoute, 
               private _userService: UserService,
@@ -34,7 +24,7 @@ export class UserDetailsComponent implements OnInit {
           this._id = +params.get('id'); 
           this._userService.getUser(this._id).subscribe(
             (user) => this.user = user, 
-            (err:any) => console.log('user-detail.comp:' +  err)
+            (err:any) => console.log(err)
           );
           // this.userList = this._userService.getUsers();
           // this.user = this._userService.getUser(this._id);
