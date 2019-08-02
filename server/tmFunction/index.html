@@ -5,28 +5,44 @@
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="d3jenks.css">
 
-	<style> 
+	<style>
 		body {
 			padding: 10px;
-			background-color:aliceblue;
+			background-color: aliceblue;
 		}
-		
+		footer {
+			text-align:center;
+			vertical-align:center;
+		}
 		img {
-			margin:20px;
+			margin: 20px;
 		}
+
+		li {
+			list-style-type: none;
+		}
+
 		.details {
 			color: white;
 		}
-		
+
 		#tom-tom {
-			width: 100%;
-			height: 200px;
+			height: 350px;
 			background-color: rgba(250, 235, 215, 0.486);
 			padding: 5px;
+			margin: 5px;
 			max-height: 400px;
 			overflow-y: scroll;
-			display: block;
-			text-align: left;
+		}
+
+		#bitcoin {
+			height: 350px;
+			background-color: rgba(250, 235, 215, 0.486);
+			padding: 5px;
+			margin: 5px;
+			max-height: 400px;
+			overflow-y: scroll;
+
 		}
 
 		.hidden {
@@ -39,12 +55,31 @@
 			xhttp.onreadystatechange = function () {
 				if (this.readyState == 4 && this.status == 200) {
 					document.getElementById("tom-tom").innerHTML = this.responseText;
+					console.log(this.responseText);
+					var rParsed = JSON.parse(this.responseText);
+					console.log(rParsed.body);
+					var r = rParsed.body;
+					for (let i = 0; i < r.length; i++) {
+						var coins = ` 
+		  <li id="${r[i].Date}" class="bitDiv">  
+		  <h6><strong>${r[i].Symbol}:&nbsp;  ${r[i].Date} </strong> </h6>   
+		  <h6>Open: ${r[i].Open} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Low: ${r[i].Low}</h6>
+		  <h6>Close: ${r[i].Close} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; High: ${r[i].High}</h6> 
+	<!--  <div>Volume BTC: ${r[i].BTC}
+		  </div>
+		  <div>Volume USD: ${r[i].USD}
+		  </div> -->
+		  <hr>
+		  </li>
+		  `;
+						document.getElementById('bitcoin').innerHTML += coins;
+					}
+
 				}
 			};
 			xhttp.open("GET", "https://jdkxd2ny04.execute-api.us-east-1.amazonaws.com/prod/thomasMiltonFunction", true);
 			xhttp.send();
-
-		} 
+		}  
 	</script>
 </head>
 
@@ -257,20 +292,37 @@
 	<br />
 	<img align="left" width="150" height="150" src="https://s3.amazonaws.com/our-daily-tech/icon.png">
 	<div align="center">
-		<h4>Serverless API</h4>
+		<h4>Serverless API Serving Bitcoin Prices</h4>
 	</div>
 	<div>
+		<code>curl -X GET "https://jdkxd2ny04.execute-api.us-east-1.amazonaws.com/prod/thomasMiltonFunction"</code>
 		<p>1.) AWS API Gateway Endpoint <em>using</em>...<br />
-			2.) AWS Route 53 A Record Set Alias	<em>using</em>...<br />
+			2.) AWS Route 53 A Record Set Alias <em>using</em>...<br />
 			3.) AWS S3 files. GET Method button <em>triggers ...</em><br />
-			4.) AWS Lambda Function <em>returning ...</em> JSON data. </p> 
-		<button class="btn btn-primary" onclick="myFunction()">Make the HTTP Call</button>
+			4.) AWS Lambda Function <em>returning ...</em> JSON data.
+		</p>
+		<button class="btn btn-primary" onclick="myFunction()">Make HTTP Call</button>
 		<hr>
-		<div id="tom-tom"></div>
-		<div id="ckmeans"></div> 
-		<code>curl "https://jdkxd2ny04.execute-api.us-east-1.amazonaws.com/prod/thomasMiltonFunction" > myname.text </code>
+		<div class="row">
+			<div class="col col-xs-5">
+				<h5>Response from XMLHttpRequest:</h5>
+				<div id="tom-tom">
+				</div>
+			</div>
+			<div class="col col-xs-5">
+				<h5>Bitcoin Daily Prices:</h5>
+				<ul id="bitcoin">
+				</ul>
+			</div>
+		</div>
+		<div id="ckmeans"></div>
 	</div>
-
+	<footer class="footer">
+		<h5>  Copyright &copy; 2019 All Rights Reserved. </h5> 
+		<h5><a href="mailto:thomasm1.maestas@gmail.com" title="Contact Information: thomasmaestas.net/">
+				Contact Thomas Maestas</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="https://thomasmaestas.net">thomasmaestas.net</a>
+		</h5>
+	</footer>
 </body>
 
 </html>
