@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ArmchairBitcoinist</title>
+    <title>Armchair Bitcoinist</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -19,35 +19,34 @@
             padding: 0;
         }
         
-        #message {
+        .message {
             background: white;
-            max-width: 360px;
-            margin: 100px auto 16px;
-            padding: 32px 24px;
+            width: 90%;
+            margin: 10px auto;
+            padding: 10px 10px;
             border-radius: 3px;
         }
         
-        #message h2 {
+        .message h2 {
             color: #ffa100;
             font-weight: bold;
             font-size: 16px;
             margin: 0 0 8px;
         }
         
-        #message h1 {
+        .message h1 {
             font-size: 22px;
             font-weight: 300;
             color: rgba(0, 0, 0, 0.6);
             margin: 0 0 16px;
         }
         
-        #message p {
-            line-height: 140%;
-            margin: 16px 0 24px;
-            font-size: 14px;
+        .message p {
+            line-height: 200%;
+            margin: 5px 0 5px;
         }
         
-        #message a {
+        .message a {
             display: block;
             text-align: center;
             background: #039be5;
@@ -58,8 +57,8 @@
             border-radius: 4px;
         }
         
-        #message,
-        #message a {
+        .message,
+        .message a {
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         }
         
@@ -71,7 +70,7 @@
         
         @media (max-width: 600px) {
             body,
-            #message {
+            .message {
                 margin-top: 0;
                 background: white;
                 box-shadow: none;
@@ -83,7 +82,6 @@
     </style>
     <style>
         body {
-            padding: 5px 5px;
             background-color: aliceblue;
             color: #0c4a7f;
         }
@@ -118,11 +116,11 @@
         
         .container {
             /* border:1px solid rgba(124,188,243,.4); */
-            border: 1px solid brown;
-            padding: 15px;
+            border: 1px solid rgba(165, 42, 42, 0.377);
+            padding: 10px;
             border-radius: 5px;
-            width: 90%;
-            height: 600px;
+            width: 95%;
+            height: 800px;
         }
         
         .navigation {
@@ -137,6 +135,7 @@
         
         h5.copyright {
             color: #3379b7b4;
+            margin-top: 25px;
         }
         
         a {
@@ -155,8 +154,20 @@
             cursor: pointer;
         }
         
-        .footer-links {
+        .new-user {
+            color: #ffa100;
+            font-style: italic;
+            font-size: 1.8rem;
             line-height: 1.5;
+        }
+        
+        .portlet {
+            height: 400px;
+            padding-left: 20px;
+        }
+        
+        .footer-links {
+            line-height: 2;
         }
     </style>
 
@@ -164,7 +175,7 @@
     <script defer src="/__/firebase/6.3.4/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
     <script defer src="/__/firebase/6.3.4/firebase-auth.js"></script>
-    <script defer src="/__/firebase/6.3.4/firebase-database.js"></script>
+    <script defer src="/__/firebase/6.3.4/firebase-firestore.js"></script>
     <script defer src="/__/firebase/6.3.4/firebase-messaging.js"></script>
     <script defer src="/__/firebase/6.3.4/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
@@ -174,23 +185,32 @@
 
 <body>
     <header>
+
         <span class="login" onclick="googleLogin()">Login</span> &nbsp;
         <a href="/register"><span class="login">Register</span></a>
         <div class="navigation">
-            <a class="navi" href="/home"> Home</a>&nbsp; | &nbsp;
-            <a class="navi" href="/home"> Console</a>&nbsp; | &nbsp;
-            <a class="navi" href="/home/analytics">Analytics</a>&nbsp; | &nbsp;
+            <a class="navi" href="/home"> Home</a>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+            <a class="navi" href="/home"> Console</a>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+            <a class="navi" href="/home/analytics">Analytics</a>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
             <a class="navi" href="/home/messages">Bitcoin News</a>
         </div>
         <h2>The Armchair Bitcoinist</h2>
         <h3 class="subheader"><em>Bitcoin Research and Analysis Console</em></h3>
     </header>
-    <div class="container">
-        <hr>
-        <div id="message">
-            <h2>Armchair Bitcoinist</h2>
-        </div>
 
+    <div class="container">
+        <div class="message">
+            <h2>
+                <p class="new-user" id="new-user">
+                    Armchair Bitcoinist
+                </p>
+            </h2>
+        </div>
+        <div class="message portlet">
+            <p class="db-change" id="db-change">
+                Messages
+            </p>
+        </div>
     </div>
     <footer class="footer">
         <hr>
@@ -201,9 +221,8 @@
             <a href="/terms" title="Terms and Conditions">
         Terms and Conditions</a> &nbsp;&nbsp; | &nbsp;&nbsp;
             <a href="/api-docs" title="API Documentation and Trading Guide">
-         API Documentation</a>
+        API Documentation</a>
         </h5>
-        <hr>
         <h5 class="copyright">&copy; ThomasMilton.net. &nbsp;All Rights Reserved. </h5>
     </footer>
     <script src="functions.js"></script>
