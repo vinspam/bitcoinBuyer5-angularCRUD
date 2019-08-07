@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ArmchairBitcoinist</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style media="screen">
+        body {
+            background: #ECEFF1;
+            color: rgba(0, 0, 0, 0.87);
+            font-family: Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #message {
+            background: white;
+            max-width: 360px;
+            margin: 100px auto 16px;
+            padding: 32px 24px;
+            border-radius: 3px;
+        }
+        
+        #message h2 {
+            color: #ffa100;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 0 0 8px;
+        }
+        
+        #message h1 {
+            font-size: 22px;
+            font-weight: 300;
+            color: rgba(0, 0, 0, 0.6);
+            margin: 0 0 16px;
+        }
+        
+        #message p {
+            line-height: 140%;
+            margin: 16px 0 24px;
+            font-size: 14px;
+        }
+        
+        #message a {
+            display: block;
+            text-align: center;
+            background: #039be5;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: white;
+            padding: 16px;
+            border-radius: 4px;
+        }
+        
+        #message,
+        #message a {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        }
+        
+        #load {
+            color: rgba(0, 0, 0, 0.4);
+            text-align: center;
+            font-size: 13px;
+        }
+        
+        @media (max-width: 600px) {
+            body,
+            #message {
+                margin-top: 0;
+                background: white;
+                box-shadow: none;
+            }
+            body {
+                border-top: 16px solid #ffa100;
+            }
+        }
+    </style>
+    <style>
+        body {
+            padding: 5px 5px;
+            background-color: aliceblue;
+            color: #0c4a7f;
+        }
+        
+        header {
+            background-color: rgba(124, 188, 243, .1);
+            color: #0c4a7f;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        footer {
+            text-align: center;
+            vertical-align: center;
+            margin-bottom: 20px;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            text-align: center;
+        }
+        
+        .subheader {
+            color: #337ab7;
+        }
+        
+        .container {
+            /* border:1px solid rgba(124,188,243,.4); */
+            border: 1px solid brown;
+            padding: 15px;
+            border-radius: 5px;
+            width: 90%;
+            height: 600px;
+        }
+        
+        .navigation {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            padding: 10px;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            /* transform: translateX(35px) */
+        }
+        
+        h5.copyright {
+            color: #3379b7b4;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        a.navi {
+            color: #0c4a7f;
+        }
+        
+        span.login {
+            color: #337ab7;
+            font-size: 1.2rem;
+            float: right;
+            padding-right: 10px;
+            cursor: pointer;
+        }
+        
+        .footer-links {
+            line-height: 1.5;
+        }
+    </style>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/6.3.4/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/6.3.4/firebase-auth.js"></script>
+    <script defer src="/__/firebase/6.3.4/firebase-database.js"></script>
+    <script defer src="/__/firebase/6.3.4/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/6.3.4/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <span class="login" onclick="googleLogin()">Login</span> &nbsp;
+        <a href="/register"><span class="login">Register</span></a>
+        <div class="navigation">
+            <a class="navi" href="/home"> Home</a>&nbsp; | &nbsp;
+            <a class="navi" href="/home"> Console</a>&nbsp; | &nbsp;
+            <a class="navi" href="/home/analytics">Analytics</a>&nbsp; | &nbsp;
+            <a class="navi" href="/home/messages">Bitcoin News</a>
+        </div>
+        <h2>The Armchair Bitcoinist</h2>
+        <h3 class="subheader"><em>Bitcoin Research and Analysis Console</em></h3>
+    </header>
+    <div class="container">
+        <hr>
+        <div id="message">
+            <h2>Armchair Bitcoinist</h2>
+        </div>
+
+    </div>
+    <footer class="footer">
+        <hr>
+        <h5 class="footer-links">
+            <a href="/about">About Us</a> &nbsp;&nbsp; | &nbsp;&nbsp;
+            <a href="mailto:thomas.maestas@ourdailytech.net" title="Contact Owner: thomas.maestas@ourdailytech.net">
+        Contact Us</a> &nbsp;&nbsp; | &nbsp;&nbsp;
+            <a href="/terms" title="Terms and Conditions">
+        Terms and Conditions</a> &nbsp;&nbsp; | &nbsp;&nbsp;
+            <a href="/api-docs" title="API Documentation and Trading Guide">
+         API Documentation</a>
+        </h5>
+        <hr>
+        <h5 class="copyright">&copy; ThomasMilton.net. &nbsp;All Rights Reserved. </h5>
+    </footer>
+    <script src="functions.js"></script>
+</body>
+
+</html>
