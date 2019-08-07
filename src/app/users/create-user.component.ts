@@ -62,7 +62,7 @@ export class CreateUserComponent implements OnInit {
         isActive: null,
         photoPath: 'assets/images/m.png' 
       }; 
-      this.panelTitle = 'Add New Contact';
+      this.panelTitle = 'Register';
       this.createUserForm.reset();
     } else {
       // this.user = Object.assign({}, this._userService.getUser(id));
@@ -70,7 +70,7 @@ export class CreateUserComponent implements OnInit {
         (user) => this.user = user,
         (err: any) => console.log('create-user.comp:' +  err)
       );
-      this.panelTitle = 'Edit Contact';
+      this.panelTitle = 'Edit Details';
     }
   }
 

@@ -1,7 +1,9 @@
 {
-  "name": "angular5-tmm",
-  "version": "0.0.0",
+  "name": "The Armchair Bitcoinist",
+  "version": "1.0.1",
   "license": "MIT",
+  "author":"Thomas Maestas"
+  "url":"thomasmaestas.net"
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
