@@ -153,6 +153,9 @@
         span.login {
             float: right;
             margin: 0 5px;
+        }
+        
+        span.register {
             border: solid 1px #ffa100;
             border-radius: 5px;
         }
@@ -218,8 +221,8 @@
     <header>
         <!-- <input class="search" placeholder="Search .." onchange="findUser(event)"> -->
         <span class="login topheader" onclick="googleLogin()">Login</span> &nbsp;
-        <a href="/register"><span class="login topheader">Register</span></a>
-        <span class="pull-left topheader">Firebase Database App </span> &nbsp;
+        <a href="/register"><span class="login register topheader">Register</span></a>
+        <span class="pull-left topheader">Firestore Serverless Database </span> &nbsp;
         <div class="navigation">
             <a class="navi" href="/home"> Home</a>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
             <a class="navi" href="/home"> Console</a>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
@@ -244,6 +247,10 @@
                 <p class="db-change data" id="db-change"></p>
             </div>
             <div class="pull-right col col-xs-5 col-right">
+                <p class="portlet-title">Upload Avatar Image</p>
+                <input class="input-update " type="file" onchange="uploadData(this.files)">
+                <hr>
+                <img id="imgUpload" src="" width="100vw">
                 <!-- <p class="portlet-title"> Update Status</p>
                 <input class="input-update "  disabled onclick="updateStatus(event)"> -->
             </div>
@@ -256,7 +263,7 @@
             </div>
             <div class="pull-right col col-xs-5 col-right">
                 <p class="portlet-title">Real-Time Inputs</p>
-                <input class="input-update " onblur="updateData(event)">
+                <input class="input-update " type="text" onblur="updateData(event)">
             </div>
         </div>
         <div class="message userlist">
