@@ -124,7 +124,7 @@
             padding: 10px;
             border-radius: 6px;
             width: 95%;
-            height: 800px;
+            min-height: 800px;
         }
         
         .navigation {
@@ -177,19 +177,38 @@
         
         .portlet {
             height: 180px;
-            padding-left: 20px;
+            padding-left: 5px;
+        }
+        
+        .analytics {
+            height: 300px;
+            max-height: 300px;
+            overflow-y: scroll;
+            padding-left: 5px;
+        }
+        
+        .analytics p:first-child {
+            border: none;
+            line-height: normal;
+        }
+        
+        .analytics p {
+            margin: 0;
+            border-left: 1px solid orange;
+            padding: 2px;
+            line-height: .9rem;
         }
         
         .updates {
             height: 180px;
-            padding-left: 20px;
+            padding-left: 5px;
         }
         
         .userlist {
             height: 300px;
             max-height: 300px;
             overflow-y: scroll;
-            padding-left: 20px;
+            padding-left: 5px;
         }
         
         .col-left {
@@ -204,6 +223,7 @@
             line-height: 2;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.4.3/Rx.js"></script>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/6.3.4/firebase-app.js"></script>
@@ -240,6 +260,29 @@
                     Armchair Bitcoinist
                 </p>
             </h2>
+        </div>
+
+        <div class="message analytics">
+            <h2>
+                <p class=" portlet-title">
+                    RxJS Functions
+                </p>
+            </h2>
+
+
+            <div class="col col-xs-6 ">
+                <p class="portlet-title"> Streaming Analytics</p>
+                <div id="analytics">
+
+                </div>
+            </div>
+            <div class="pull-right col col-xs-5 col-right">
+                <p class="portlet-title"> Streaming Analytics </p>
+                <div id="analytics2">
+
+                </div>
+            </div>
+
         </div>
         <div class="message portlet">
             <div class="col col-xs-6 ">
@@ -291,7 +334,9 @@
         </h5>
         <h5 class="copyright">&copy; ThomasMilton.net. &nbsp;All Rights Reserved. </h5>
     </footer>
-    <script src="functions.js"></script>
+    <script src="firebase-functions.js"></script>
+
+    <script src="rxjs-functions.js"></script>
 </body>
 
 </html>
