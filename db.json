@@ -181,5 +181,17 @@
       "Volume ETH": 184436.14,
       "Volume USD": 53230192.12
     }
+  ], 
+  "price": [
+    {
+      "Date": "2019-10-17",
+      "Symbol": "BTCUSD",
+      "Open": 7993.54,
+      "High": 8070,
+      "Low": 7937.01,
+      "Close": 8034.32,
+      "Volume BTC": 1570.08,
+      "Volume USD": 12537245.82
+    }
   ]
 }
