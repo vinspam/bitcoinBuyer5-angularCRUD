@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core'; // , OnChanges, SimpleChanges
-import { User } from '../models/user.model';
+import { User } from '../../models/user.model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserService } from '../services/user.service'; 
+import { UserService } from '../../services/user.service'; 
 
 @Component({
   selector: 'tm-display-user',

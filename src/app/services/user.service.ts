@@ -7,38 +7,51 @@ import 'rxjs/add/observable/of';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { environment } from '../../environments/environment';
 
 //import { HttpClient } from '@angular/common/http'; 
 
 @Injectable()
 export class UserService {
-  constructor(private httpClient: HttpClient) { }
-  baseUrl = 'http://localhost:3000/users'; 
+  private baseUrl: string;
+  private newId: number;
+  private listUsers: User[] = []; 
+
+  constructor(private httpClient: HttpClient) {
+    this.baseUrl = environment.aws_url; // AWS ENDPOINT: 
+  this.getUsers().subscribe(
+                data => {
+                  this.listUsers = data;
+                },
+                error => {
+                     console.log(error);
+                });
+  }
 
   // private listUsers: User[] = []//  
-    // [
-    //   {
-    //     "id": 1,
-    //     "name": 'Tom',
-    //     "email": 'thomasm1.maestas@gmail.com',
-    //     "phone": 5055087707,
-    //     "contactType": 'email',
-    //     "userGroup": '5',
-    //     "dateOfBirth": new Date('2020-09-03'),
-    //     "isActive": true,
-    //     "photoPath": 'assets/images/a.png'
-    //   }, {
-    //     "id": 2,
-    //     "name": 'Tom22',
-    //     "email": 'thomasm1222.maestas@gmail.com',
-    //     "phone": 5222227707,
-    //     "contactType": 'email',
-    //     "userGroup": '5',
-    //     "dateOfBirth": new Date('2020-09-03'),
-    //     "isActive": true,
-    //     "photoPath": 'assets/images/a.png'
-    //   }
-    // ];
+  // [
+  //   {
+  //     "id": 1,
+  //     "name": 'Tom',
+  //     "email": 'thomasm1.maestas@gmail.com',
+  //     "phone": 5055087707,
+  //     "contactType": 'email',
+  //     "userGroup": '5',
+  //     "dateOfBirth": new Date('2020-09-03'),
+  //     "isActive": true,
+  //     "photoPath": 'assets/images/a.png'
+  //   }, {
+  //     "id": 2,
+  //     "name": 'Tom22',
+  //     "email": 'thomasm1222.maestas@gmail.com',
+  //     "phone": 5222227707,
+  //     "contactType": 'email',
+  //     "userGroup": '5',
+  //     "dateOfBirth": new Date('2020-09-03'),
+  //     "isActive": true,
+  //     "photoPath": 'assets/images/a.png'
+  //   }
+  // ];
 
   //1 getUsers(): User[] {
   //  return this.listUsers;
@@ -62,12 +75,14 @@ export class UserService {
 
   getUser(id: number): Observable<User> {
     // return this.listUsers.find(u => u.id === id)
-    return this.httpClient.get<User>(`${this.baseUrl}/${id}`) 
+    return this.httpClient.get<User>(`${this.baseUrl}/${id}`)
       .pipe(catchError(this.handleError));
   }
 
-  addUser(user: User): Observable<User> {
-    return this.httpClient.post<User>(this.baseUrl, user, {
+  register(user: User): Observable<User> {
+    this.newId = this.listUsers.length +1;
+    console.log(this.newId);
+    return this.httpClient.post<User>(`${this.baseUrl}/${this.newId}`, user, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })

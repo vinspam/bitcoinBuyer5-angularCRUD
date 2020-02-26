@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UserGroup } from '../models/userGroup.model'; 
-import { User } from '../models/user.model';
-import { UserService } from '../services/user.service';
+import { UserGroup } from '../../../models/userGroup.model'; 
+import { User } from '../../../models/user.model';
+import { UserService } from '../../../services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -13,13 +13,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class CreateUserComponent implements OnInit {
   //contactType="email";
   //isActive=true
+  lastName:string = "lastName";
   datePickerConfig:any;
   previewPhoto = false;
   panelTitle:string;
   dateOfBirth: Date = new Date(2018,0,30)
   @ViewChild('userForm') public createUserForm: NgForm;
   
-  user: User;
+  user: User; 
 
   userGroups: UserGroup[] = [  
     {id:1, name: 'CoinTrader Premium'},
@@ -32,6 +33,7 @@ export class CreateUserComponent implements OnInit {
   constructor(private _userService: UserService, 
               private _router: Router,
               private _route: ActivatedRoute) {
+
     this.datePickerConfig = Object.assign({}, 
       {
         containerClass: 'theme-dark-blue',
@@ -40,6 +42,7 @@ export class CreateUserComponent implements OnInit {
         // maxDate: new Date(2018, 11,31),
         dateInputFormat: 'yyyy-MM-dd'
       });
+      
   }
 
   ngOnInit() {
@@ -49,11 +52,15 @@ export class CreateUserComponent implements OnInit {
     })
   }
 
+    
   private getUser(id) {
     if(id===0) {
       this.user  = {
         id: null,
         name: null, 
+        username: null,
+        firstName: null,
+        lastName: null,
         email: '', 
         phone: null, 
         contactType: null, 
@@ -82,7 +89,7 @@ export class CreateUserComponent implements OnInit {
     //this._userService.save(newUser)(
       // this._userService.save(this.user).subscribe(
       if (this.user.id === null) {
-        this._userService.addUser(this.user).subscribe(
+        this._userService.register(this.user).subscribe(
           (data: User) => {
             console.log(data);
             this.createUserForm.reset();

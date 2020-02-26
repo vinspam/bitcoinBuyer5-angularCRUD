@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanDeactivate } from '@angular/router';
-import { CreateUserComponent } from '../users/create-user.component';
+import { CreateUserComponent } from '../components/users/register/create-user.component';
 
 @Injectable()
 export class CreateUserCanDeactivateGuardService implements CanDeactivate<CreateUserComponent> {
