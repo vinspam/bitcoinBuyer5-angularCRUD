@@ -11,15 +11,16 @@ import { Router } from '@angular/router'
   <div class="col-md-4 mb-3" *ngFor="let coin of memberAltcoins">
     <div class="card text-center">
       <div class="card-body">
-        <h5 class="card-title">{{coin.Symbol}}</h5>
+        <h5 class="card-title">{{coin.symbol}}</h5>
         <!-- <p class="card-text">Volume BTC: {{coin.'Volume BTC'}}</p> -->
-        <p class="card-text">Open: {{coin.Open}}</p>
-        <p class="card-text">Close: {{coin.Close}}</p>
+        <p class="card-text">Open: {{coin.open}}</p>
+        <p class="card-text">Close: {{coin.close}}</p>
+        <p class="card-text">Net: {{coin.netPositive}}</p>
       <a href="#" class="btn btn-primary">Statistics</a>
       </div>
       <div class="card-footer text-muted">
-        {{coin.Date }}
-         <!-- | date:'shortDate'}} -->
+        <strong>{{coin.date }}</strong>
+       //  <!-- | date:'shortDate'}} -->
       </div>
     </div>
   </div>

@@ -13,8 +13,12 @@ import { AuthenticationService } from './services/authentication.service';
 export class AppComponent {
   title = 'tm';
   showLoadingIndicator = true;
+  isLoggedIn: boolean;
 
   constructor(private _router: Router, private _authService: AuthenticationService) {
+
+    this.isLoggedIn = this._authService.loggedIn();
+
     this._router.events.subscribe((routerEvent: Event) => {
       if(routerEvent instanceof NavigationStart) {
         this.showLoadingIndicator = true;
