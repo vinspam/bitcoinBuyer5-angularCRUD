@@ -7,7 +7,7 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
-        "serve": "json-server --watch db.json",
+        "serve": "nodemon mongo/server",
         "build": "ng build --prod",
         "test": "ng test",
         "lint": "ng lint",

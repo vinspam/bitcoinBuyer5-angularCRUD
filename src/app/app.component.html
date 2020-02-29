@@ -1,6 +1,53 @@
 <!-- <div class="container">
     <tm-list-users></tm-list-users>
 </div> -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+ <h4> <a class="navbar-brand" href="#">ARMCHAIR BITCOINIST</a></h4>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+   <div class="row">
+     <div class="col">
+        <ul class="navbar-nav mr-auto side left" id="left">
+     
+        <a class="nav-link"  routerLinkActive="active" routerLink="/coins"  >BITCOINS</a> 
+       
+      <a class="nav-link"  routerLink="/users">PORTFOLIOS</a>
+        <a  class="nav-link" routerLinkActive="active" routerLink="/animations">
+        ANIMATIONS 
+        </a>
+     
+        <a  class="nav-link"  routerLinkActive="active" routerLink="/data">
+          DATA 
+        </a>
+     
+    </ul> 
+     </div>
+    <div class="col">
+      <ul class="navbar-nav side" id="right">
+     
+      <!-- <a class="nav-link"  [routerLink]="['/users', 2]">DETAILS</a> -->
+      <!-- <a routerLink="edit/0">EDIT</a> -->
+      <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="/login" routerLinkActive="active">LOGIN</a>
+      <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="/register" routerLinkActive="active">REGISTER</a>
+      <a class="nav-link" style="cursor:pointer" *ngIf="_authService.loggedIn()"
+        (click)="_authService.logoutUser()">LOGOUT</a>
+    </ul>
+    </div>
+   </div>
+    
+  </div>
+</nav>
+
+<div class="container">
+   <div *ngIf="showLoadingIndicator" class="spinner"></div>
+  <router-outlet></router-outlet>
+</div>
+
+<!--  
 <div class="container">
     <nav class="navbar navbar-default" id="nav">
         <ul class="nav navbar-nav">
@@ -33,4 +80,4 @@
     </nav>
     <div *ngIf="showLoadingIndicator" class="spinner"></div>
     <router-outlet></router-outlet>
-</div>
+</div> -->

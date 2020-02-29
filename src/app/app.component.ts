@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError, NavigationCancel } from '@angular/router';
+import { AuthenticationService } from './services/authentication.service';
 // import 'lodash';
 
 // declare var _: any;
@@ -13,7 +14,7 @@ export class AppComponent {
   title = 'tm';
   showLoadingIndicator = true;
 
-  constructor(private _router: Router) {
+  constructor(private _router: Router, private _authService: AuthenticationService) {
     this._router.events.subscribe((routerEvent: Event) => {
       if(routerEvent instanceof NavigationStart) {
         this.showLoadingIndicator = true;

@@ -18,3 +18,13 @@ loading.io/css
     0% {transform: rotate(0deg) }
     100% { transform: rotate(-360deg) }
 }
+ul.side {
+    max-width:60%;
+}
+#left {
+    max-width:35% ;
+} 
+#right {
+    float:right;
+    /* max-width:40%; */
+} 

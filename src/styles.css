@@ -1,8 +1,10 @@
 body {
-    background-image: url('assets/images/patterns/greeninvert.png');
+    /* background-image: url('assets/images/patterns/green.jpg');*/
+        background-image: url('assets/images/patterns/silverchip.png'); 
 }
-nav#nav{
-    background-image: url('assets/images/patterns/silverchip.png');
+nav#nav, nav {
+    /* background-image: url('assets/images/patterns/silverchip.png'); */
+    background-color: rgba(0, 0, 255, 0.493);
     border:solid 1px rgba(192, 192, 192, 0.349);
     padding: 10px;
 }

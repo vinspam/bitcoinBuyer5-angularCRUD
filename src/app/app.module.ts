@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router'; 
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core'; 
+import { ReactiveFormsModule, FormsModule } from '@angular/forms'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 import { SelectRequiredValidatorDirective } from './shared/select-required-validator.directive';
 import { UserFilterPipe } from './shared/user-filter.pipe';
@@ -17,6 +18,7 @@ import { UserListResolverService } from './services/user-list-resolver.service';
 import { CreateUserCanDeactivateGuardService } from './services/create-user-can-deactivate-guard.service';
 import { UserDetailsGuardService } from './services/user-details-guard.service';
 import { SidebarService } from './components/layout/sidebar.service';
+import { CoinService } from './services/coin.service';
 
 import { AppComponent } from './app.component';
 import { ListUsersComponent } from './components/users/list-users.component';
@@ -33,53 +35,10 @@ import { DetailbarToggleComponent } from './components/layout/detailbar-toggle.c
 import { DetailbarComponent } from './components/layout/detailbar.component';
 import { AccordionComponent } from './components/layout/accordion.component';
 import { LoginComponent } from './components/users/login/login.component';
+import { CoinsComponent } from './components/coins/coins.component';
+import { MemberAltcoinsComponent } from './components/coins/member-altcoins.component';
 
 
-const tmRoutes: Routes = [
-  {
-    path: '',
-    component: ListUsersComponent,
-    resolve: { userList: UserListResolverService }
-  },
-
-  {
-    path: 'list',
-    component: ListUsersComponent,
-    resolve: { userList: UserListResolverService }
-  },
-
-  {
-    path: 'edit/:id',
-    component: CreateUserComponent,
-    canDeactivate: [CreateUserCanDeactivateGuardService]
-  },
-
-  {
-    path: '',
-    component: CreateUserComponent,
-    canDeactivate: [CreateUserCanDeactivateGuardService]
-  },
-
-  {
-    path: 'users/:id',
-    component: UserDetailsComponent,
-    canActivate: [UserDetailsGuardService]
-  },
-
-  {
-    path: 'animations',
-    component: AnimationsComponent
-  },
-
-  {
-    path: 'data',
-    component: ArraymakerComponent
-  },
-
-  { path: 'notfound', component: PageNotFoundComponent },
-
-  { path: '**', redirectTo: '/', pathMatch: 'full' }
-]
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,24 +57,33 @@ const tmRoutes: Routes = [
     DetailbarToggleComponent,
     DetailbarComponent,
     AccordionComponent,
-    LoginComponent
+    LoginComponent,
+    CoinsComponent,
+    MemberAltcoinsComponent
   ],
-  imports: [
+  imports: [ 
     BrowserModule, 
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    RouterModule.forRoot(tmRoutes, { enableTracing: false })
+    BrowserAnimationsModule, 
+    AppRoutingModule
+    // RouterModule.forRoot(tmRoutes, { enableTracing: false })
   ],
   providers: [
     UserService,
+    CoinService,
     AuthenticationService,
     AlertService,
     SidebarService,
     CreateUserCanDeactivateGuardService,
     UserDetailsGuardService,
-    UserListResolverService
+    UserListResolverService,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }
     ],
   bootstrap: [AppComponent]
 })

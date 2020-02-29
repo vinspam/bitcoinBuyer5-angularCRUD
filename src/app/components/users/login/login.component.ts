@@ -9,26 +9,27 @@ import { AuthenticationService } from '../../../services/authentication.service'
 import { first } from 'rxjs/operators';
 
 @Component({
-  selector: 'tm-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'tm-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-     loginForm: FormGroup;
+    loginForm: FormGroup;
     loading = false;
     submitted = false;
     returnUrl: string;
+    // loginUserData = {}
 
-    constructor( 
+    constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
-        private router: Router,
-        private authenticationService: AuthenticationService,
+        private _router: Router,
+        private _auth: AuthenticationService,
         // private alertService: AlertService
     ) {
         // redirect to home if already logged in
-        if (this.authenticationService.currentUserValue) {
-            this.router.navigate(['/']);
+        if (this._auth.currentUserValue) {
+            this._router.navigate(['/']);
         }
     }
 
@@ -45,27 +46,48 @@ export class LoginComponent implements OnInit {
     // convenience getter for easy access to form fields
     get f() { return this.loginForm.controls; }
 
-    onSubmit() {
-        this.submitted = true;
+    // onSubmit() {
+    //     this.submitted = true;
 
-        // reset alerts on submit
-        // this.alertService.clear();
+    //     // reset alerts on submit
+    //     // this.alertService.clear();
 
-        // stop here if form is invalid
-        if (this.loginForm.invalid) {
-            return;
-        }
+    //     // stop here if form is invalid
+    //     if (this.loginForm.invalid) {
+    //         return;
+    //     }
+
+    //     this.loading = true;
+
+    //     this._auth.login(this.f.username.value, this.f.password.value)
+    //         .pipe(first())
+    //         .subscribe(
+    //             data => {
+    //                 this._router.navigate([this.returnUrl]);
+    //             },
+    //             error => {
+    //                 // this.alertService.error(error);
+    //                 this.loading = false;
+    //             });
+    // }
+
+    // loginUser() {
+    onSubmit() {  
+    if(this.loginForm.invalid) {
+        return;
+    }
 
         this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value)
-            .pipe(first())
-            .subscribe(
-                data => {
-                    this.router.navigate([this.returnUrl]);
-                },
-                error => {
-                    // this.alertService.error(error);
-                    this.loading = false;
-                });
+
+this.submitted = true;
+this._auth.loginUser(this.loginForm.controls) //(this.loginUserData)
+    .subscribe(
+        res => {
+            this.loading = false;
+            localStorage.setItem('token', res.token)
+            this._router.navigate(['/member-altcoins'])
+        },
+        err => console.log(err)
+    )
     }
 }
