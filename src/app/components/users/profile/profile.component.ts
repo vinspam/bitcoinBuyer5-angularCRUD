@@ -6,11 +6,11 @@ import { UserService } from '../../../services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'tm-create-user',
-  templateUrl: './create-user.component.html',
-  styleUrls: ['./create-user.component.css']
+  selector: 'tm-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
 })
-export class CreateUserComponent implements OnInit {
+export class ProfileComponent implements OnInit {
   //contactType="email";
   //isActive=true
   lastName:string = "lastName";
@@ -51,7 +51,20 @@ export class CreateUserComponent implements OnInit {
       this.getUser(id);
     })
   }
- 
+// "userGroup": "5",
+//         "lastName": "aaa",
+//         "photoPath": "assets/images/c.png",
+//         "email": "thomasm1.maestas@gmail.com",
+//         "uid": "43uxxxid",
+//         "isActive": true,
+//         "lastname": "das;lkfj",
+//         "firstname": "a;lsdfkj",
+//         "contactType": "email",
+//         "username": "Tom",
+//         "dateOfBirth": "2020/09/03",
+//         "id": 2,
+//         "phone": 5550005555
+    
   private getUser(id) {
     if(id===0) {
       this.user  = {
@@ -65,11 +78,11 @@ export class CreateUserComponent implements OnInit {
           firstname:  ' ',
           contactType:  ' ', 
           username: ' ',
-          dateOfBirth:  new Date, 
+          dateOfBirth:  null, 
           id: 0, 
-          phone:  333333 
+          phone:  null 
       }; 
-      this.panelTitle = 'Register';
+      this.panelTitle = 'Profile';
       this.createUserForm.reset();
     } else {
       // this.user = Object.assign({}, this._userService.getUser(id));

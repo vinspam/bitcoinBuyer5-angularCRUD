@@ -1,17 +1,19 @@
 export class User {
     id: number;
     uid?: string;
+    password?:string;
     userId?: string;
     username?: string;
-    name: string; 
+    name?: string; 
+    firstname?: string;
     firstName?: string;
     lastname?:string;
     lastName?:string;
     email?: string;
     phone?: number; 
     userGroup?: string;
-    contactType: string;
-    dateOfBirth: Date; 
-    isActive: boolean;
+    contactType?: string;
+    dateOfBirth?: Date; 
+    isActive?: boolean;
     photoPath?: string;
 }

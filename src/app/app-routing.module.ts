@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './components/users/login/login.component'
-import { CreateUserComponent } from './components/users/register/create-user.component' 
+import { ProfileComponent } from './components/users/profile/profile.component';
+import { LoginComponent } from './components/users/login/login.component';
+import { CreateUserComponent } from './components/users/register/create-user.component'; 
 import { CoinsComponent } from './components/coins/coins.component';
 import { MemberAltcoinsComponent } from './components/coins/member-altcoins.component';
 
 import { UserDetailsComponent } from './components/users/user-details.component';
 import { ListUsersComponent } from './components/users/list-users.component';
 import { AnimationsComponent } from './animations/animations.component';
-import { ArraymakerComponent } from './components/arraymaker/arraymaker.component';
+ 
 import { PageNotFoundComponent } from './shared/page-not-found.component';
 
 import { AuthGuardService } from './services/auth.guard.service';
@@ -47,6 +48,10 @@ const routes: Routes = [
     component: CoinsComponent
   },
   {
+    path: 'profile',
+    component: ProfileComponent
+  },
+  {
     path: 'login',
     component: LoginComponent
   },
@@ -68,11 +73,7 @@ const routes: Routes = [
   {
     path: 'animations',
     component: AnimationsComponent
-  }, 
-  {
-    path: 'data',
-    component: ArraymakerComponent
-  }, 
+  },   
   { path: 'notfound', component: PageNotFoundComponent }, 
   { path: '**', redirectTo: '/', pathMatch: 'full' }
 ]

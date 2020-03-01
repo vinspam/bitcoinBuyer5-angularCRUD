@@ -15,3 +15,14 @@ nav#nav, nav {
 div.info {
     min-width:60%;
 }
+
+a {
+    text-decoration:none;
+}
+.forms {
+    max-width:70%;
+    margin: 0 auto;
+}
+.forms div.panel-header {
+    width:90%;
+}

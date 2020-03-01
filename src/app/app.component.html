@@ -2,7 +2,7 @@
     <tm-list-users></tm-list-users>
 </div> -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
- <h2> <a class="navbar-brand" href="#">ARMCHAIR BITCOINIST</a></h2>
+ <h2> <a class="navbar-brand" class="title" id="title" routerLink="/coins" >ARMCHAIR BITCOINIST</a></h2>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -19,10 +19,7 @@
         <a  class="nav-link" routerLinkActive="active" routerLink="/animations">
         ANIMATIONS 
         </a>
-     
-        <a  class="nav-link"  routerLinkActive="active" routerLink="/data">
-          DATA 
-        </a>
+  
      
     </ul> 
      </div>
@@ -33,6 +30,8 @@
       <!-- <a routerLink="edit/0">EDIT</a> -->
       <a class="nav-link" *ngIf="!this.isLoggedIn" routerLink="/login" routerLinkActive="active">LOGIN</a>
       <a class="nav-link" *ngIf="!this.isLoggedIn" routerLink="/register" routerLinkActive="active">REGISTER</a>
+      <a class="nav-link"   *ngIf="!this.isLoggedIn"  routerLink="/profile" 
+      routerLinkActive="active" >PROFILE</a>
       <a class="nav-link" style="cursor:pointer" *ngIf="this.isLoggedIn"
         (click)="_authService.logoutUser()">LOGOUT</a>
     </ul>

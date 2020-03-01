@@ -84,7 +84,7 @@ export class UserService {
     console.log(this.newId);
     return this.httpClient.post<User>(`${this.baseUrl}/${this.newId}`, user, {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Accept': 'application/json'
       })
     })
       .pipe(catchError(this.handleError));

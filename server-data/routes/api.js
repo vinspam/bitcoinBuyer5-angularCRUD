@@ -4,10 +4,13 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const User = require('../models/user');
 const jwt = require('jsonwebtoken'); 
-
+require('dotenv').config()
+pw_mongo = process.env.PW_MONGO;
 // 2.12 :: works
-const db = `mongodb://thomas:${pw}@cluster1-shard-00-00-jgrue.mongodb.net:27017,cluster1-shard-00-01-jgrue.mongodb.net:27017,cluster1-shard-00-02-jgrue.mongodb.net:27017/test?ssl=true&replicaSet=Cluster1-shard-0&authSource=admin&retryWrites=true&w=majority`;
-console.log(db)
+ 
+// 2.12 :: works
+const db = `mongodb://thomas:${pw_mongo}@cluster1-shard-00-00-jgrue.mongodb.net:27017,cluster1-shard-00-01-jgrue.mongodb.net:27017,cluster1-shard-00-02-jgrue.mongodb.net:27017/test?ssl=true&replicaSet=Cluster1-shard-0&authSource=admin&retryWrites=true&w=majority`;
+ 
 
 // 3.0 :: no work
 //mongodb+srv://thomas:<password>@cluster1-jgrue.mongodb.net/test?retryWrites=true&w=majority

@@ -27,7 +27,7 @@ import { DisplayUserComponent } from './components/users/display-user.component'
 import { UserDetailsComponent } from './components/users/user-details.component';
 
 import { AnimationsComponent } from './animations/animations.component';
-import { ArraymakerComponent } from './components/arraymaker/arraymaker.component';
+ 
 import { TestingBtnComponent } from './shared/testing-btn/testing-btn.component';
 import { SidebarComponent } from './components/layout/sidebar.component';
 import { SidebarToggleComponent } from './components/layout/sidebar-toggle.component';
@@ -37,6 +37,7 @@ import { AccordionComponent } from './components/layout/accordion.component';
 import { LoginComponent } from './components/users/login/login.component';
 import { CoinsComponent } from './components/coins/coins.component';
 import { MemberAltcoinsComponent } from './components/coins/member-altcoins.component';
+import { ProfileComponent } from './components/users/profile/profile.component';
 
 
 @NgModule({
@@ -49,8 +50,7 @@ import { MemberAltcoinsComponent } from './components/coins/member-altcoins.comp
     PageNotFoundComponent,
     UserFilterPipe,
     SelectRequiredValidatorDirective,
-    AnimationsComponent,
-    ArraymakerComponent,
+    AnimationsComponent, 
     TestingBtnComponent,
     SidebarComponent,
     SidebarToggleComponent,
@@ -59,7 +59,8 @@ import { MemberAltcoinsComponent } from './components/coins/member-altcoins.comp
     AccordionComponent,
     LoginComponent,
     CoinsComponent,
-    MemberAltcoinsComponent
+    MemberAltcoinsComponent,
+    ProfileComponent
   ],
   imports: [ 
     BrowserModule, 
