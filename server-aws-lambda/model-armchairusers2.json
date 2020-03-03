@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ArmchairUserInputModel",
+  "type": "object",
+  "properties": {
+     "userGroup": { "type": "string" },
+        "lastName": { "type": "string" },
+        "lastname": { "type": "string" },
+        "photoPath": { "type": "string" },
+        "email": { "type": "string" },
+        "uid":  { "type": "string" },
+        "name": { "type": "string" },
+        "firstname": { "type": "string" },
+        "isActive": { "type": "boolean" },
+        "password": { "type": "string" },
+        "contactType":  { "type": "string" },
+        "username":  { "type": "string" },
+        "dateOfBirth": { "type": "string" },
+        "id":{ "type": "string" },
+        "phone": { "type": "number" }
+  }
+}

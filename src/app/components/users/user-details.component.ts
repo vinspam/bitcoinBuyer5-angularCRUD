@@ -11,7 +11,7 @@ import { User } from '../../models/user.model';
 export class UserDetailsComponent implements OnInit {
   @Output() notify: EventEmitter<User> = new EventEmitter<User>();
   private _id: number;
-  // userList: User[];
+  userList: User[] = [];
   user: User;  
 
   constructor(private _route: ActivatedRoute, 

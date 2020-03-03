@@ -13,6 +13,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class CreateUserComponent implements OnInit {
   //contactType="email";
   //isActive=true
+  id:number = 0;
+  stringId: string;
+  newRegister:boolean = true;
+
   lastName:string = "lastName";
   datePickerConfig:any;
   previewPhoto = false;
@@ -50,24 +54,28 @@ export class CreateUserComponent implements OnInit {
       const id = +parameterMap.get('id');
       this.getUser(id);
     })
+     this.createUserForm.reset();
   }
  
   private getUser(id) {
-    if(id===0) {
+    this.stringId = id.toString();
+    if(id === null) {
       this.user  = {
-          userGroup: 'select', // 'null', //
-          lastName: ' ',
-          photoPath: 'assets/images/m.png', 
-          email: ' ', 
-          uid: ' ',
-          isActive:  true,
-          lastname: ' ',
-          firstname:  ' ',
-          contactType:  ' ', 
-          username: ' ',
-          dateOfBirth:  new Date, 
-          id: 0, 
-          phone:  333333 
+           id: this.stringId, 
+            password:'',
+            uid: '', 
+            username: '', 
+            firstname: '', 
+            lastname: '',  
+            lastName: '',  
+            email: '',  
+            phone: null, 
+            contactType: '', 
+            userGroup: 'select', 
+            dateOfBirth:  new Date, 
+            isActive: true,
+            photoPath: '' 
+ 
       }; 
       this.panelTitle = 'Register';
       this.createUserForm.reset();
@@ -88,7 +96,8 @@ export class CreateUserComponent implements OnInit {
     // const newUser: User = Object.assign ({}, this.user); //no longer worry about addressing reference var
     //this._userService.save(newUser)(
       // this._userService.save(this.user).subscribe(
-      if (this.user.id === 0) {
+      // if (this.user.id === 0) {
+        if(this.newRegister === true) { 
         this._userService.register(this.user).subscribe(
           (data: User) => {
             console.log(data);
