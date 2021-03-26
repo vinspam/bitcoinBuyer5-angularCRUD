@@ -3,22 +3,22 @@ import { User } from '../models/user.model';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 // import 'rxjs/add/observable/map';
-// import 'rxjs/add/observable/delay'; 
+// import 'rxjs/add/observable/delay';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { environment } from '../../environments/environment';
 
-//import { HttpClient } from '@angular/common/http'; 
+//import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class UserService {
   private baseUrl: string;
   private newId: number;
-  private listUsers: User[] = []; 
+  private listUsers: User[] = [];
 
   constructor(private httpClient: HttpClient) {
-    this.baseUrl = environment.aws_url; // AWS ENDPOINT: 
+    this.baseUrl = environment.aws_url; // AWS ENDPOINT:
   this.getUsers().subscribe(
                 data => {
                   this.listUsers = data;
@@ -28,7 +28,7 @@ export class UserService {
                 });
   }
 
-  // private listUsers: User[] = []//  
+  // private listUsers: User[] = []//
   // [
   //   {
   //     "id": 1,
@@ -114,7 +114,7 @@ export class UserService {
       .pipe(catchError(this.handleError));
     // const i = this.listUsers.findIndex(u => u.id === id);
     // if (i !== -1) {
-    //   this.listUsers.splice(i, 1); 
+    //   this.listUsers.splice(i, 1);
   }
 }
 

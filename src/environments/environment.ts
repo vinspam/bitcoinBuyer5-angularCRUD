@@ -4,8 +4,9 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false, 
-  base_url: "http://localhost:3000/users",
+  production: false,
+  // base_url: "http://localhost:3000/users",
+  base_url: "https://ccgcdpvo25.execute-api.us-east-1.amazonaws.com/Armchair_Production/armchair-users",
   // AWS Lambda-DynamoDB-APIgateway
   aws_url: "https://ccgcdpvo25.execute-api.us-east-1.amazonaws.com/Armchair_Production/armchair-users"
 };
